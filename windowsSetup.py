@@ -5,9 +5,43 @@ import tkinter.ttk as ttk
 from tkinter import messagebox
 import time
 import psutil
+import os
+
 
 def config(rootForDestroy):
     rootForDestroy.destroy()
+    configtk = Tk()
+    configtk.title('Установка Windows 4')
+    welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
+    Label(configtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=5)
+    bold_font = Font(family='Helvetica', size=12, weight='bold')
+    Label(configtk, text='Анализ конфигурации', font=bold_font).grid(row=0, column=1)
+    Label(configtk, text='Программа установки проведет анализ конфигурации \nкомпьютера. Если компьютер оборудован перечисленными в списке \nустройствами, установитe соответствующие им флажки.').grid(row=1,column=1)
+    Checkbutton(configtk, text='Звуковая либо MIDI плата,либо плата для видео записи').grid(row=2, column=1)
+    Checkbutton(configtk, text='Сетевая плата').grid(row=3, column=1)
+    configtk.mainloop()
+
+
+def crtfiles(name, orgnz, root):
+    if not os.path.exists('userinfo'):
+        os.mkdir('userinfo')
+        nametxt = open('userinfo/name.txt', 'w')
+        nametxt.write(name)
+        nametxt.close()
+        orgnztxt = open('userinfo/organization.txt', 'w')
+        orgnztxt.write(orgnz)
+        orgnztxt.close()
+    else:
+
+        nametxt = open('userinfo/name.txt', 'w')
+        nametxt.write(name)
+        nametxt.close()
+        orgnztxt = open('userinfo/organization.txt', 'w')
+        orgnztxt.write(orgnz)
+        orgnztxt.close()
+    config(root)
+
+
 def usereg(rootForDestroy):
     rootForDestroy.destroy()
     useregtk = Tk()
@@ -15,42 +49,50 @@ def usereg(rootForDestroy):
     welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
     Label(useregtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=4)
     bold_font = Font(family='Helvetica', size=12, weight='bold')
-    Label(useregtk,text='Сведения о пользователе',font=bold_font).grid(row=0,column=1,columnspan=2)
-    Label(useregtk,text='Укажите свое имя и, при необходимости,\n организации.').grid(row=1,column=1,columnspan=2)
-    Label(useregtk,text='Имя: ').grid(row=2,column=1)
+    Label(useregtk, text='Сведения о пользователе', font=bold_font).grid(row=0, column=1, columnspan=2)
+    Label(useregtk, text='Укажите свое имя и, при необходимости,\n организации.').grid(row=1, column=1, columnspan=2)
+    Label(useregtk, text='Имя: ').grid(row=2, column=1)
     name = Entry(useregtk)
-    name.grid(row=2,column=2)
-    Label(useregtk,text='Организация: ').grid(row=3,column=1)
+    name.grid(row=2, column=2)
+    Label(useregtk, text='Организация: ').grid(row=3, column=1)
     organization = Entry(useregtk)
-    organization.grid(row=3,column=2)
-    Button(useregtk,text='Далее →',command=lambda: config(useregtk)).grid(row=4,column=2)
-    Button(useregtk, text='← Назад',command=lambda: key(useregtk)).grid(row=4, column=0)
+    organization.grid(row=3, column=2)
+    Button(useregtk, text='Далее →', command=lambda: crtfiles(name.get(), organization.get(), useregtk)).grid(row=4,
+                                                                                                              column=2)
+    Button(useregtk, text='← Назад', command=lambda: key(useregtk)).grid(row=4, column=0)
     useregtk.mainloop()
-def check(ent1,ent2,ent3,root):
+
+
+def check(ent1, ent2, ent3, root):
     if ent1.get() == '24796' and ent2.get() == '0014736' and ent3.get() == '66386':
         usereg(root)
     else:
-        messagebox.showerror('Неверный ключ','Неверный ключ! Попробуйте еще раз.')
+        messagebox.showerror('Неверный ключ', 'Неверный ключ! Попробуйте еще раз.')
+
+
 def key(rootForDestroy):
     rootForDestroy.destroy()
     keyr = Tk()
     keyr.title('Установка Windows 4')
     certificateimg = PhotoImage(file='images/certificate.PNG')
-    Label(keyr,image=certificateimg).grid(row=0,column=0,rowspan=3)
+    Label(keyr, image=certificateimg).grid(row=0, column=0, rowspan=3)
     bold_font = Font(family='Helvetica', size=12, weight='bold')
-    Label(keyr, text='Сертификат подлинности', font=bold_font).grid(row=0, column=1,columnspan=5)
-    Label(keyr,text='Материалы по компьютеру должны содержать сертификат \nподлинности Microsoft Windows 95(Certificate of Authenticity)(показан на \nрисунке слева).\nВведите номер,указанный над штрих-кодом в сертификате \nподлинности, исключая строку \"-OEM-\". Затем нажмите кнопку \n\"Далее\".').grid(row=1,column=1,columnspan=5)
+    Label(keyr, text='Сертификат подлинности', font=bold_font).grid(row=0, column=1, columnspan=5)
+    Label(keyr,
+          text='Материалы по компьютеру должны содержать сертификат \nподлинности Microsoft Windows 95(Certificate of Authenticity)(показан на \nрисунке слева).\nВведите номер,указанный над штрих-кодом в сертификате \nподлинности, исключая строку \"-OEM-\". Затем нажмите кнопку \n\"Далее\".').grid(
+        row=1, column=1, columnspan=5)
     ent1 = Entry(keyr)
-    ent1.grid(row=2,column=1)
-    Label(keyr,text='-OEM-').grid(row=2,column=2)
+    ent1.grid(row=2, column=1)
+    Label(keyr, text='-OEM-').grid(row=2, column=2)
     ent2 = Entry(keyr)
     ent2.grid(row=2, column=3)
     Label(keyr, text='-').grid(row=2, column=4)
     ent3 = Entry(keyr)
     ent3.grid(row=2, column=5)
     Button(keyr, text='← Назад', command=lambda: cataloge(keyr)).grid(row=3, column=0)
-    Button(keyr, text='Далее →', command=lambda: check(ent1,ent2,ent3,keyr)).grid(row=3, column=1)
+    Button(keyr, text='Далее →', command=lambda: check(ent1, ent2, ent3, keyr)).grid(row=3, column=1)
     keyr.mainloop()
+
 
 def cataloge(rootForDestroy):
     rootForDestroy.destroy()
@@ -60,28 +102,30 @@ def cataloge(rootForDestroy):
     Label(cataloger, image=welcomesetupimg).grid(row=0, column=0, rowspan=8)
     bold_font = Font(family='Helvetica', size=12, weight='bold')
     Label(cataloger, text='Подготовка каталога', font=bold_font).grid(row=0, column=1)
-    Label(cataloger,text='Идет подготовка каталога Windows. Программа установки\n проверит также, имеется ли на диске достаточно места для\n установки Windows 4.').grid(row=1,column=1)
-    Label(cataloger,text='Идет поиск установленных компонентов...').grid(row=2,column=1)
-    cp = ttk.Progressbar(cataloger,length=500, mode='determinate')
-    cp.grid(row=3,column=1)
-    cm = ttk.Progressbar(cataloger,length=500, mode='determinate')
+    Label(cataloger,
+          text='Идет подготовка каталога Windows. Программа установки\n проверит также, имеется ли на диске достаточно места для\n установки Windows 4.').grid(
+        row=1, column=1)
+    Label(cataloger, text='Идет поиск установленных компонентов...').grid(row=2, column=1)
+    cp = ttk.Progressbar(cataloger, length=500, mode='determinate')
+    cp.grid(row=3, column=1)
+    cm = ttk.Progressbar(cataloger, length=500, mode='determinate')
     cmlbl = Label(cataloger, text='Идет поиск свободного места на диске...')
-    back = Button(cataloger,text='← Назад',command=lambda: welcome(cataloger),state=DISABLED)
-    back.grid(row=8,column=0)
-    next = Button(cataloger, text='Далее →', command=lambda: key(cataloger),state=DISABLED)
+    back = Button(cataloger, text='← Назад', command=lambda: welcome(cataloger), state=DISABLED)
+    back.grid(row=8, column=0)
+    next = Button(cataloger, text='Далее →', command=lambda: key(cataloger), state=DISABLED)
     next.grid(row=8, column=1)
 
-    for i in range(0,99):
+    for i in range(0, 99):
         cataloger.update()
         cataloger.update_idletasks()
         time.sleep(0.1)
         cp.step(1)
-    Label(cataloger,text='Не найдено!').grid(row=4,column=1)
+    Label(cataloger, text='Не найдено!').grid(row=4, column=1)
 
-    cmlbl.grid(row=5,column=1)
-    cm.grid(row=6,column=1)
+    cmlbl.grid(row=5, column=1)
+    cm.grid(row=6, column=1)
 
-    for q in range(0,99):
+    for q in range(0, 99):
         cataloger.update()
         cataloger.update_idletasks()
         time.sleep(0.05)
@@ -92,39 +136,48 @@ def cataloge(rootForDestroy):
         if int(free) <= 2:
             messagebox.showerror('Неустранимая ошибка',
                                  'Windows не удастся установиться на компьютер где памяти осталось меньше 2 GB. Чтобы продолжить установку освободите память компьютера.')
-        Label(cataloger, text='%s GB. ОК!' % int(free)).grid(row=7,column=1)
+        Label(cataloger, text='%s GB. ОК!' % int(free)).grid(row=7, column=1)
     except:
-        messagebox.showerror('Неустранимая ошибка','Не удалось определить диск /home.')
+        messagebox.showerror('Неустранимая ошибка', 'Не удалось определить диск /home.')
 
     back['state'] = NORMAL
     next['state'] = NORMAL
 
     cataloger.mainloop()
 
+
 def welcome(rootForDestroy):
     rootForDestroy.destroy()
     welcomer = Tk()
     welcomer.title('Установка Windows 4')
-    bold_font = Font(family='Helvetica',size=12,weight='bold')
+    bold_font = Font(family='Helvetica', size=12, weight='bold')
     welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
-    Label(welcomer,image=welcomesetupimg).grid(row=0,column=0,rowspan=5)
-    Label(welcomer,text='Добро пожаловать!!!',font=bold_font).grid(row=0,column=1)
-    Label(welcomer,text='Мастер установки Windows 4 выполнит все действия,\n необходимые для установки системы на компьютер. Для начала\n нажмите кнопку \"Далее\".\nВся установка целиком включает три этапа:').grid(row=1,column=1)
-    Label(welcomer,text='→ 1) Сбор данных о компьютере',font=bold_font).grid(row=2,column=1)
-    Label(welcomer,text='2) Копирование файлов Windows на компьютер\n3) Перезагрузка компьютера и завершение установки').grid(row=3,column=1)
-    Label(welcomer,text='Windows 4 замещает любые имеющиеся на компьютере версии MS-DOS и Windows').grid(row=4,column=1)
-    Button(welcomer,text='← Назад',state=DISABLED).grid(row=5,column=0)
-    Button(welcomer, text='Далее →',command=lambda: cataloge(welcomer)).grid(row=5, column=1)
+    Label(welcomer, image=welcomesetupimg).grid(row=0, column=0, rowspan=5)
+    Label(welcomer, text='Добро пожаловать!!!', font=bold_font).grid(row=0, column=1)
+    Label(welcomer,
+          text='Мастер установки Windows 4 выполнит все действия,\n необходимые для установки системы на компьютер. Для начала\n нажмите кнопку \"Далее\".\nВся установка целиком включает три этапа:').grid(
+        row=1, column=1)
+    Label(welcomer, text='→ 1) Сбор данных о компьютере', font=bold_font).grid(row=2, column=1)
+    Label(welcomer,
+          text='2) Копирование файлов Windows на компьютер\n3) Перезагрузка компьютера и завершение установки').grid(
+        row=3, column=1)
+    Label(welcomer, text='Windows 4 замещает любые имеющиеся на компьютере версии MS-DOS и Windows').grid(row=4,
+                                                                                                          column=1)
+    Button(welcomer, text='← Назад', state=DISABLED).grid(row=5, column=0)
+    Button(welcomer, text='Далее →', command=lambda: cataloge(welcomer)).grid(row=5, column=1)
     welcomer.mainloop()
+
 
 def start():
     root = Tk()
     root.title('Лицензионное соглашение')
     setupimg = PhotoImage(file='images/setupimg.PNG')
-    Label(root,image=setupimg).grid()
-    Label(root,text='Прочтите следующее лицензионное соглашение. Чтобы увидеть\n его целиком, покрутите колесо мыши').grid(row=0,column=1)
+    Label(root, image=setupimg).grid()
+    Label(root,
+          text='Прочтите следующее лицензионное соглашение. Чтобы увидеть\n его целиком, покрутите колесо мыши').grid(
+        row=0, column=1)
     text = Text(root)
-    text.insert(END,'''Microsoft[r] Windows[r] 95
+    text.insert(END, '''Microsoft[r] Windows[r] 95
     ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ И ОГРАНИЧЕННАЯ ГАРАНТИЯ
     
     ВАЖНО - ПРОЧИТАЙТЕ ВНИМАТЕЛЬНО! Настоящее лицензионное соглашение (далее «соглашение») является юридическим документом, заключаемым между вами (физическим или юридическим лицом) и Microsoft Corporation (далее «корпорация Microsoft») относительно сопровождаемого данной лицензией программного продукта корпорации Microsoft (далее «программа» или «программное обеспечение»), включающего в себя программное обеспечение, записанное на соответствующих носителях, любые печатные материалы и любую «встроенную» или «электронную» документацию. Устанавливая, копируя или иным образом используя программу или любые ее обновления (термин «обновление» определен ниже), вы тем самым принимаете на себя условия настоящего лицензионного соглашения. Если вы не согласны с условиями настоящего лицензионного соглашения, вы не имеете права устанавливать, копировать или иным способом использовать данное программное обеспечение; верните его продавцу и получите обратно уплаченные деньги. Кроме того, устанавливая, копируя или иным способом используя какие-либо компоненты программы, полученные отдельно, но являющиеся частью программы («обновления»), вы соглашаетесь с условиями любых дополнительных соглашений, которые могут сопровождать эти обновления. Если вы не принимаете условий таких дополнительных соглашений, сопровождающих обновления программы, не устанавливайте, не копируйте и не используйте эти обновления.
@@ -423,8 +476,10 @@ def start():
     Технический специалист школьного округа города Портленд в штате Орегон Скотт Робинсон привел в качестве примера недавнее открытие 16 лабораторий с компьютерами под управлением Linux. Данная инициатива обошлась школьному округу в 240 тысяч долларов, что вдвое дешевле варианта с использованием Windows. Необходимо учесть и тот факт, что компания Red Hat, разработчик дистрибутивов на базе Linux, предлагает бесплатную техподдержку для образовательных структур. Наряду с фактом «свободного распространения» ПО такое предложение многим покажется весьма заманчивым.
     
     Скотт Робинсон следующим образом прокомментировал угрозы ревизии со стороны Microsoft: «Всесильная корпорация возомнила, что у школ просто нет выбора в вопросе использования ПО, а ведь ситуация уже давно изменилась, причем явно не в пользу компании. Я нахожу смешным тот факт, что компанию Microsoft не интересует налаживание отношений со школами, ведь Windows, будучи установленной на школьный компьютер, станет первой операционной системой, которую изучат дети».''')
-    text.grid(row=1,column=0,columnspan=2)
-    Label(root,text='Принимаете ли вы все условия лицензионного соглашения Microsoft?\nПри отрицательном ответе установка будет прервана.\nЧтобы продолжить установку Windows 95 условия необходимо принять.').grid(row=2,column=0,columnspan=2)
-    Button(root,text='Да',command=lambda: welcome(root)).grid(row=3,column=0)
-    Button(root,text='Нет',command=lambda: sys.exit()).grid(row=3,column=1)
+    text.grid(row=1, column=0, columnspan=2)
+    Label(root,
+          text='Принимаете ли вы все условия лицензионного соглашения Microsoft?\nПри отрицательном ответе установка будет прервана.\nЧтобы продолжить установку Windows 95 условия необходимо принять.').grid(
+        row=2, column=0, columnspan=2)
+    Button(root, text='Да', command=lambda: welcome(root)).grid(row=3, column=0)
+    Button(root, text='Нет', command=lambda: sys.exit()).grid(row=3, column=1)
     root.mainloop()
