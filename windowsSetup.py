@@ -8,17 +8,52 @@ import psutil
 import os
 
 
+def scpfls(rootforDestroy):
+    rootforDestroy.destroy()
+
+
+def sureconfig(rootForDestroy):
+    rootForDestroy.destroy()
+    sureconfigtk = Tk()
+    sureconfigtk.title('Установка Windows 4')
+    welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
+    Label(sureconfigtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=4)
+    bold_font = Font(family='Helvetica', size=12, weight='bold')
+    Label(sureconfigtk, text='Анализ конфигурации', font=bold_font).grid(row=0, column=1)
+    Label(sureconfigtk, text='Идет определение конфигурации компьютера.').grid(row=1, column=1)
+    Label(sureconfigtk, text='ЗАМЕЧАНИЕ. Процесс диагностики может занять несколько \nминут. Если диск компьютера слишком долго не подает признаков \nжизни, выключите компьютер(клавиш CTRL+ALT+DELETE \nнедостаточно). Затем включите его и продолжите установку').grid(row=2, column=1)
+    Label(sureconfigtk, text='Идет анализ конфигурации...').grid(row=3, column=1)
+    pb = ttk.Progressbar(sureconfigtk, length=500, mode='determinate')
+    pb.grid(row=4, column=1)
+    back = Button(sureconfigtk, text='← Назад', command=lambda: config(sureconfigtk), state=DISABLED)
+    back.grid(row=5, column=0)
+    next = Button(sureconfigtk, text='Далее →', command=lambda: scpfls(sureconfigtk), state=DISABLED)
+    next.grid(row=5, column=1)
+
+    for w in range(0, 99):
+        sureconfigtk.update()
+        sureconfigtk.update_idletasks()
+        time.sleep(0.5)
+        pb.step(1)
+
+    back['state'] = NORMAL
+    next['state'] = NORMAL
+    sureconfigtk.mainloop()
+
+
 def config(rootForDestroy):
     rootForDestroy.destroy()
     configtk = Tk()
     configtk.title('Установка Windows 4')
     welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
-    Label(configtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=5)
+    Label(configtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=4)
     bold_font = Font(family='Helvetica', size=12, weight='bold')
     Label(configtk, text='Анализ конфигурации', font=bold_font).grid(row=0, column=1)
-    Label(configtk, text='Программа установки проведет анализ конфигурации \nкомпьютера. Если компьютер оборудован перечисленными в списке \nустройствами, установитe соответствующие им флажки.').grid(row=1,column=1)
+    Label(configtk, text='Программа установки проведет анализ конфигурации \nкомпьютера. Если компьютер оборудован перечисленными в списке \nустройствами, установитe соответствующие им флажки.').grid(row=1, column=1)
     Checkbutton(configtk, text='Звуковая либо MIDI плата,либо плата для видео записи').grid(row=2, column=1)
     Checkbutton(configtk, text='Сетевая плата').grid(row=3, column=1)
+    Button(configtk, text='← Назад', command=lambda: usereg(configtk)).grid(row=4, column=0)
+    Button(configtk, text='Далее →', command=lambda: sureconfig(configtk)).grid(row=4, column=1)
     configtk.mainloop()
 
 
@@ -32,7 +67,6 @@ def crtfiles(name, orgnz, root):
         orgnztxt.write(orgnz)
         orgnztxt.close()
     else:
-
         nametxt = open('userinfo/name.txt', 'w')
         nametxt.write(name)
         nametxt.close()
