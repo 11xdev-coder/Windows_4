@@ -8,8 +8,53 @@ import psutil
 import os
 
 
+def cpflstk(rootForDestroy):
+    def exitt(event):
+        drums.destroy()
+    rootForDestroy.destroy()
+    drums = Tk()
+    root = Tk()
+    Label()
+    drums.title('')
+    drum1 = PhotoImage(file='images/drum1.PNG')
+    drum2 = PhotoImage(file='images/drum2.PNG')
+    drum = Label(drums, image=drum1)
+    drum.grid(row=0, column=0)
+    Label(drums, text='Идет подготовка к копированию файлов...').grid(row=0, column=1)
+    exitbtn = Button(drums, text='Выход(F3)', command=lambda: drums.destroy())
+    exitbtn.grid(row=0, column=2)
+    drums.bind('<F3>', exitt)
+    while True:
+        drum['image'] = drum2
+        drums.update()
+        drums.update_idletasks()
+        root.update()
+        root.update_idletasks()
+        time.sleep(0.5)
+        drum['image'] = drum1
+        drums.update()
+        drums.update_idletasks()
+        root.update()
+        root.update_idletasks()
+        time.sleep(0.5)
+
+
 def scpfls(rootforDestroy):
     rootforDestroy.destroy()
+    scpflstk = Tk()
+    scpflstk.title('Установка Windows 4')
+    bold_font = Font(family='Helvetica', size=12, weight='bold')
+    welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
+    Label(scpflstk, image=welcomesetupimg).grid(row=0, column=0, rowspan=6)
+    Label(scpflstk, text='Начало копирования файлов', font=bold_font).grid(row=0, column=1)
+    Label(scpflstk, text='Программа установки имеет все данные для начала \nкопирования файлов Windows. Возврат к просмотру или изменению \nпараметров производит кнопка \"Назад\"').grid(row=1, column=1)
+    Label(scpflstk, text='Чтобы приступить к копированию файлов Windows, \nнажмите кнопку  \"Далее\"').grid(row=2,column=1)
+    Label(scpflstk, text='1) Сбор данных о компьютере').grid(row=3, column=1)
+    Label(scpflstk, text='→ 2) Копирование файлов Windows на компьютер', font=bold_font).grid(row=4, column=1)
+    Label(scpflstk, text='3) Перезагрузка компьютера и завершение установки').grid(row=5, column=1)
+    Button(scpflstk, text='← Назад', command=lambda: config(scpflstk)).grid(row=6, column=0)
+    Button(scpflstk, text='Далее →', command=lambda: cpflstk(scpflstk)).grid(row=6, column=1)
+    scpflstk.mainloop()
 
 
 def sureconfig(rootForDestroy):
@@ -17,7 +62,7 @@ def sureconfig(rootForDestroy):
     sureconfigtk = Tk()
     sureconfigtk.title('Установка Windows 4')
     welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
-    Label(sureconfigtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=4)
+    Label(sureconfigtk, image=welcomesetupimg).grid(row=0, column=0, rowspan=5)
     bold_font = Font(family='Helvetica', size=12, weight='bold')
     Label(sureconfigtk, text='Анализ конфигурации', font=bold_font).grid(row=0, column=1)
     Label(sureconfigtk, text='Идет определение конфигурации компьютера.').grid(row=1, column=1)
@@ -33,7 +78,7 @@ def sureconfig(rootForDestroy):
     for w in range(0, 99):
         sureconfigtk.update()
         sureconfigtk.update_idletasks()
-        time.sleep(0.5)
+        time.sleep(0.2)
         pb.step(1)
 
     back['state'] = NORMAL
