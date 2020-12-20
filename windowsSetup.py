@@ -8,23 +8,64 @@ import psutil
 import os
 
 
+def finnally(rootForDestroy):
+    print("Please restart the computer")
+    os.mkdir('setup')
+    os.mkdir('setup/success')
+    rootForDestroy.destroy()
+
+
+def restarting(rootForDestroy1):
+    rootForDestroy1.destroy()
+    root = Tk()
+    welcomesetupimg = PhotoImage(file='images/welcomesetupimg.PNG')
+    Label(root, image=welcomesetupimg).grid(row=0, column=0, rowspan=2)
+    bold_font = Font(family='Helvetica', size=12, weight='bold')
+    Label(root, text='Завершение установки', font=bold_font).grid(row=0, column=1)
+    Label(root, text='''Программа установки готова к загрузке Windows 95 и проведению 
+заключительного этапа установки.
+
+1) Сбор данных о компьютере
+2) Копирование файлов Windows на компьютер''').grid(row=1, column=1)
+    Label(root, text='→ 3) Перезагрузка компьютера и завершение установки', font=bold_font).grid(row=2, column=1)
+    Button(root, text='← Назад', state=DISABLED).grid(row=3, column=0)
+    Button(root, text='Готово', command=lambda: finnally(root)).grid(row=3, column=1)
+    root.mainloop()
+
+
 def cpflstk(rootForDestroy):
     def exitt(event):
         drums.destroy()
     rootForDestroy.destroy()
     drums = Tk()
-    root = Tk()
-    Label()
+    root = Toplevel()
+    root.title('')
     drums.title('')
     drum1 = PhotoImage(file='images/drum1.PNG')
     drum2 = PhotoImage(file='images/drum2.PNG')
     drum = Label(drums, image=drum1)
     drum.grid(row=0, column=0)
-    Label(drums, text='Идет подготовка к копированию файлов...').grid(row=0, column=1)
+    welcomecpfls = PhotoImage(file='images/welcomecpfiles.PNG')
+    Label(root, image=welcomecpfls).grid(row=0, column=0,rowspan=2)
+    Label(drums, text='Идет копирование файлов...').grid(row=0, column=1)
     exitbtn = Button(drums, text='Выход(F3)', command=lambda: drums.destroy())
+    bold_font = Font(family='Helvetica', size=12, weight='bold')
+    Label(root, text='Добро пожаловать!', font=bold_font).grid(row=0, column=1)
+    Label(root, text='''Добро пожаловать в Microsoft Windows 95!
+Windows 95 полностью раскрывает
+возможности персонального компьютера.
+
+1. Все, что вы делаете,
+будет работать бестрее и проще.
+
+2. Все, что вы хотели сделать, и даже более,
+станет возможно.
+
+3. Все, что вы будете делать,
+доставит вам удовольствие.''').grid(row=1,column=1)
     exitbtn.grid(row=0, column=2)
     drums.bind('<F3>', exitt)
-    while True:
+    for i in range(0, 15):
         drum['image'] = drum2
         drums.update()
         drums.update_idletasks()
@@ -37,6 +78,7 @@ def cpflstk(rootForDestroy):
         root.update()
         root.update_idletasks()
         time.sleep(0.5)
+    restarting(drums)
 
 
 def scpfls(rootforDestroy):
