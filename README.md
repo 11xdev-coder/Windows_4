@@ -6,6 +6,6 @@ Windows 4 <img src="https://emoji.gg/assets/emoji/7009_windows95.png" height="30
 
 
 My tasks:
-- [ ] Add Welcome Screen
+- [x] Add Welcome Screen
 - [ ] Add start menu
 - [ ] Make file explorer

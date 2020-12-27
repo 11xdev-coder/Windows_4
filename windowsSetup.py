@@ -12,6 +12,7 @@ def finnally(rootForDestroy):
     print("Please restart the computer")
     os.mkdir('setup')
     os.mkdir('setup/success')
+    os.mkdir('system')
     rootForDestroy.destroy()
 
 
