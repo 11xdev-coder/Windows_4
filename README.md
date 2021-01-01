@@ -10,9 +10,17 @@ My tasks:
 - [ ] Add start menu
   - [ ] Add Programs Menu
     - [ ] Add Accessories menu
+      - [ ] Add Games Menu
+      - [ ] Add Internet Tools Menu
+      - [ ] Add MultiMedia Menu
+      - [ ] Add System Tools Menu
+      - [ ] Add Calculator <-
+      - [ ] Add Notepad
+      - [ ] Add Paint
+      - [ ] Add WordPad
     - [ ] Add StartUp menu
     - [x] Add MS-DOS Prompt 
-    - [ ] Add Windows Explorer <-
+    - [x] Add Windows Explorer 
   - [ ] Add Documents Menu
   - [ ] Add find menu
   - [ ] Add settings menu

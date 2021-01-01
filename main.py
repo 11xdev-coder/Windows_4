@@ -6,6 +6,7 @@ from tkinter import messagebox
 from PIL import Image
 from settings import *
 from ms_dos_prompt import startms_dos
+from windows_explorer import explorer_start
 
 if os.path.exists('setup/success'):
     pass
@@ -62,6 +63,8 @@ def openprograms():
     programsmenu = Toplevel()
     msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
     msdosbtn.grid(row=2, column=0)
+    windowsexplorerbtn = Button(programsmenu, text='Windows Менеджер', command=lambda: explorer_start())
+    windowsexplorerbtn.grid(row=3, column=0)
     programsmenu.mainloop()
 
 
