@@ -8,4 +8,15 @@ Windows 4 <img src="https://emoji.gg/assets/emoji/7009_windows95.png" height="30
 My tasks:
 - [x] Add Welcome Screen
 - [ ] Add start menu
+  - [ ] Add Programs Menu
+    - [ ] Add Accessories menu
+    - [ ] Add StartUp menu
+    - [ ] Add MS-DOS Prompt <-
+    - [ ] Add Windows Explorer
+  - [ ] Add Documents Menu
+  - [ ] Add find menu
+  - [ ] Add settings menu
+  - [ ] Add help
+  - [ ] Add run
+  - [ ] Add shutdown menu  
 - [ ] Make file explorer
