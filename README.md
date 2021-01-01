@@ -11,8 +11,8 @@ My tasks:
   - [ ] Add Programs Menu
     - [ ] Add Accessories menu
     - [ ] Add StartUp menu
-    - [ ] Add MS-DOS Prompt <-
-    - [ ] Add Windows Explorer
+    - [x] Add MS-DOS Prompt 
+    - [ ] Add Windows Explorer <-
   - [ ] Add Documents Menu
   - [ ] Add find menu
   - [ ] Add settings menu

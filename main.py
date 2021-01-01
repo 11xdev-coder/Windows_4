@@ -5,6 +5,7 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import Image
 from settings import *
+from ms_dos_prompt import startms_dos
 
 if os.path.exists('setup/success'):
     pass
@@ -36,6 +37,7 @@ Button(signin, text='Отмена', command=lambda: signin.destroy(), width=10).
 signin.mainloop()
 
 welcomesignin = Tk()
+welcomesignin.config(cursor='watch white')
 welcomesignin.geometry(ra)
 welcomesignin.overrideredirect(1)
 # Opening image with Pillow
@@ -56,13 +58,21 @@ playsound.playsound("sounds/startup.wav")
 welcomesignin.destroy()
 
 
+def openprograms():
+    programsmenu = Toplevel()
+    msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
+    msdosbtn.grid(row=2, column=0)
+    programsmenu.mainloop()
+
+
 def startclckd():
-    startroot = Tk()
+    startroot = Toplevel()
+    startroot.title("")
     startwidth = screen_width-(screen_width + 250)
     startheight = screen_height - (screen_height - 1500)
     startroot.wm_attributes("-topmost", 1)
-    shutdownmenubtn = Button(startroot, text="Shutdown")
-    shutdownmenubtn.grid(row=6, column=0)
+    programsbtn = Button(startroot, text="Programs", command=openprograms)
+    programsbtn.grid(row=0, column=0)
     while True:
         startroot.update()
         startroot.update_idletasks()
