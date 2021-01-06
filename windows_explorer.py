@@ -10,7 +10,7 @@ class FileSystemView(QWidget):
         appWidth = 800
         appHeight = 300
 
-        self.setWindowTitle("Windows Менеджер")
+        self.setWindowTitle("Просмоторщик файлов Windows")
         self.setGeometry(300, 300, appWidth, appHeight)
 
         self.model = QFileSystemModel()

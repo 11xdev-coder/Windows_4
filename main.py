@@ -7,6 +7,8 @@ from PIL import Image
 from settings import *
 from ms_dos_prompt import startms_dos
 from windows_explorer import explorer_start
+from calculator import start_calc
+from notepad import text_editor
 
 if os.path.exists('setup/success'):
     pass
@@ -59,11 +61,27 @@ playsound.playsound("sounds/startup.wav")
 welcomesignin.destroy()
 
 
+def launchnotepad():
+    fornotepad = Toplevel()
+    te = text_editor(fornotepad)
+    fornotepad.mainloop()
+
+
+def openaccessories():
+    accessoriesmenu = Toplevel()
+    accessoriesmenu.title("")
+    Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
+    Button(accessoriesmenu, text='Блокнот', command=launchnotepad).grid(row=5, column=0)
+    accessoriesmenu.mainloop()
+
+
 def openprograms():
     programsmenu = Toplevel()
+    programsmenu.title("")
+    Button(programsmenu, text='Приложения', command=openaccessories).grid(row=0, column=0)
     msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
     msdosbtn.grid(row=2, column=0)
-    windowsexplorerbtn = Button(programsmenu, text='Windows Менеджер', command=lambda: explorer_start())
+    windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows', command=lambda: explorer_start())
     windowsexplorerbtn.grid(row=3, column=0)
     programsmenu.mainloop()
 
@@ -74,7 +92,7 @@ def startclckd():
     startwidth = screen_width-(screen_width + 250)
     startheight = screen_height - (screen_height - 1500)
     startroot.wm_attributes("-topmost", 1)
-    programsbtn = Button(startroot, text="Programs", command=openprograms)
+    programsbtn = Button(startroot, text="Программы", command=openprograms)
     programsbtn.grid(row=0, column=0)
     while True:
         startroot.update()

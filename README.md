@@ -14,9 +14,9 @@ My tasks:
       - [ ] Add Internet Tools Menu
       - [ ] Add MultiMedia Menu
       - [ ] Add System Tools Menu
-      - [ ] Add Calculator <-
-      - [ ] Add Notepad
-      - [ ] Add Paint
+      - [x] Add Calculator 
+      - [x] Add Notepad
+      - [ ] Add Paint <-
       - [ ] Add WordPad
     - [ ] Add StartUp menu
     - [x] Add MS-DOS Prompt 
