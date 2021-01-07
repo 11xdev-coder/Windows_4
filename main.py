@@ -9,6 +9,7 @@ from ms_dos_prompt import startms_dos
 from windows_explorer import explorer_start
 from calculator import start_calc
 from notepad import text_editor
+from paint import start_mspaint
 
 if os.path.exists('setup/success'):
     pass
@@ -71,7 +72,8 @@ def openaccessories():
     accessoriesmenu = Toplevel()
     accessoriesmenu.title("")
     Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
-    Button(accessoriesmenu, text='Блокнот', command=launchnotepad).grid(row=5, column=0)
+    Button(accessoriesmenu, text='Блокнот', command=lambda: launchnotepad()).grid(row=5, column=0)
+    Button(accessoriesmenu, text='Рисовалка', command=lambda: start_mspaint()).grid(row=7, column=0)
     accessoriesmenu.mainloop()
 
 

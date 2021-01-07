@@ -16,8 +16,8 @@ My tasks:
       - [ ] Add System Tools Menu
       - [x] Add Calculator 
       - [x] Add Notepad
-      - [ ] Add Paint <-
-      - [ ] Add WordPad
+      - [x] Add Paint 
+      - [ ] Add WordPad <-
     - [ ] Add StartUp menu
     - [x] Add MS-DOS Prompt 
     - [x] Add Windows Explorer 
@@ -28,3 +28,10 @@ My tasks:
   - [ ] Add run
   - [ ] Add shutdown menu  
 - [ ] Make file explorer
+
+
+This is an image from Paint:
+<img src="/home/matvei/Pictures/TESTIFICATE.png">
+
+=)
+

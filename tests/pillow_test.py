@@ -10,3 +10,4 @@ print(width, height)
 root = Tk()
 Label(root, image=resized_img).grid(row=0,column=0)
 root.mainloop()
+
