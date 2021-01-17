@@ -10,6 +10,9 @@ from windows_explorer import explorer_start
 from calculator import start_calc
 from notepad import text_editor
 from paint import start_mspaint
+import runner
+from snake import start_snek
+
 
 if os.path.exists('setup/success'):
     pass
@@ -68,9 +71,20 @@ def launchnotepad():
     fornotepad.mainloop()
 
 
+def opengames():
+    gamesmenu = Toplevel()
+    gamesmenu.title("")
+    Button(gamesmenu, text='Сапер', command=lambda: runner.start_minesweeper()).grid(row=2, column=0)
+    Button(gamesmenu, text='Змейка', command=lambda: start_snek()).grid(row=1, column=0)
+    #Button(gamesmenu, text='Солитер', command=lambda: game.start_solitaire()).grid(row=2, column=0)
+    Button(gamesmenu, text='Паркур', command=lambda: os.system("Mini_runner/run.x86_64")).grid(row=3, column=0)
+    gamesmenu.mainloop()
+
+
 def openaccessories():
     accessoriesmenu = Toplevel()
     accessoriesmenu.title("")
+    Button(accessoriesmenu, text='Игры', command=opengames).grid(row=0, column=0)
     Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
     Button(accessoriesmenu, text='Блокнот', command=lambda: launchnotepad()).grid(row=5, column=0)
     Button(accessoriesmenu, text='Рисовалка', command=lambda: start_mspaint()).grid(row=7, column=0)

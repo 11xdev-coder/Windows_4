@@ -11,13 +11,16 @@ My tasks:
   - [ ] Add Programs Menu
     - [ ] Add Accessories menu
       - [ ] Add Games Menu
+      	- [x] Add MineSweeper
+      	- [x] Add Snake 
+      	- [ ] Add Solitaire <-
       - [ ] Add Internet Tools Menu
       - [ ] Add MultiMedia Menu
       - [ ] Add System Tools Menu
       - [x] Add Calculator 
       - [x] Add Notepad
       - [x] Add Paint 
-      - [ ] Add WordPad <-
+      - [ ] Add WordPad #TO-DO
     - [ ] Add StartUp menu
     - [x] Add MS-DOS Prompt 
     - [x] Add Windows Explorer 
