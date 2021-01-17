@@ -6,6 +6,7 @@ from tkinter import messagebox
 import time
 import psutil
 import os
+from sys import platform
 
 
 def finnally(rootForDestroy):
@@ -252,7 +253,10 @@ def cataloge(rootForDestroy):
         cataloger.update_idletasks()
         time.sleep(0.05)
         cm.step(1)
-    DISK = "/home"
+    if platform == 'linux' or platform == 'linux2':
+        DISK = "/home"
+    elif platform == 'win32':
+        DISK = 'C:\\'
     try:
         free = psutil.disk_usage(DISK).free / (1024 * 1024 * 1024)
         if int(free) <= 2:

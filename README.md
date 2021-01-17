@@ -33,8 +33,5 @@ My tasks:
 - [ ] Make file explorer
 
 
-This is an image from Paint:
-<img src="/home/matvei/Pictures/TESTIFICATE.png">
-
-=)
+Now available on Windows!
 
