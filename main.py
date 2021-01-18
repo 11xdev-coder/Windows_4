@@ -79,12 +79,19 @@ def detectosforparkour():
         os.system('Mini_runner_for_windows/run/Mini_runner.exe')
 
 
+def detectosforsolitaire():
+    if platform == 'linux' or platform == 'linux2':
+        os.system("Solitaire/run.x86_64")
+    elif platform == 'win32':
+        os.system('Solitaire_for_windows/run/tesiSolitaire.exe')
+
+
 def opengames():
     gamesmenu = Toplevel()
     gamesmenu.title("")
     Button(gamesmenu, text='Сапер', command=lambda: runner.start_minesweeper()).grid(row=2, column=0)
     Button(gamesmenu, text='Змейка', command=lambda: start_snek()).grid(row=1, column=0)
-    #Button(gamesmenu, text='Солитер', command=lambda: game.start_solitaire()).grid(row=2, column=0)
+    Button(gamesmenu, text='Солитер', command=detectosforsolitaire).grid(row=2, column=0)
     Button(gamesmenu, text='Паркур', command=detectosforparkour).grid(row=3, column=0)
     gamesmenu.mainloop()
 
