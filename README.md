@@ -13,7 +13,8 @@ My tasks:
       - [ ] Add Games Menu
       	- [x] Add MineSweeper
       	- [x] Add Snake 
-      	- [ ] Add Solitaire <-
+      	- [x] Add Parkour Game 
+      	- [x] Add Solitaire
       - [ ] Add Internet Tools Menu
       - [ ] Add MultiMedia Menu
       - [ ] Add System Tools Menu
