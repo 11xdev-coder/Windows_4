@@ -10,6 +10,7 @@ from ms_dos_prompt import startms_dos
 from windows_explorer import explorer_start
 from calculator import start_calc
 from notepad import text_editor
+from wordpad import word_editor
 from paint import start_mspaint
 import runner
 from snake import start_snek
@@ -72,6 +73,12 @@ def launchnotepad():
     fornotepad.mainloop()
 
 
+def launchword():
+    forword = Toplevel()
+    teword = word_editor(forword)
+    forword.mainloop()
+
+
 def detectosforparkour():
     if platform == 'linux' or platform == 'linux2':
         os.system("Mini_runner/run.x86_64")
@@ -102,6 +109,7 @@ def openaccessories():
     Button(accessoriesmenu, text='Игры', command=opengames).grid(row=0, column=0)
     Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
     Button(accessoriesmenu, text='Блокнот', command=lambda: launchnotepad()).grid(row=5, column=0)
+    Button(accessoriesmenu, text='Редактор файлов разметки', command=lambda: launchword()).grid(row=6, column=0)
     Button(accessoriesmenu, text='Рисовалка', command=lambda: start_mspaint()).grid(row=7, column=0)
     accessoriesmenu.mainloop()
 
