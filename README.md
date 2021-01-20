@@ -36,7 +36,7 @@ My tasks:
 - [ ] Make file explorer
 
 
-This is an image from browser
+This is an image from browser 
 
 ![This is an image from browser](images/screenshot.png)
 
