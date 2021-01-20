@@ -10,18 +10,20 @@ My tasks:
 - [ ] Add start menu
   - [ ] Add Programs Menu
     - [ ] Add Accessories menu
-      - [ ] Add Games Menu
+      - [x] Add Games Menu
       	- [x] Add MineSweeper
       	- [x] Add Snake 
       	- [x] Add Parkour Game 
       	- [x] Add Solitaire
-      - [ ] Add Internet Tools Menu
+      - [x] Add Internet Tools Menu
+        - [x] Add Internet Explorer <-
       - [ ] Add MultiMedia Menu
+        - [ ] Add media player <-
       - [ ] Add System Tools Menu
       - [x] Add Calculator 
       - [x] Add Notepad
       - [x] Add Paint 
-      - [ ] Add WordPad #TO-DO
+      - [x] Add WordPad
     - [ ] Add StartUp menu
     - [x] Add MS-DOS Prompt 
     - [x] Add Windows Explorer 
@@ -34,5 +36,7 @@ My tasks:
 - [ ] Make file explorer
 
 
-Now available on Windows!
+This is an image from browser
+
+![This is an image from browser](images/screenshot.png)
 

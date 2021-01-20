@@ -14,6 +14,7 @@ from wordpad import word_editor
 from paint import start_mspaint
 import runner
 from snake import start_snek
+from internet_browser import start_browser
 
 
 if os.path.exists('setup/success'):
@@ -114,10 +115,18 @@ def openaccessories():
     accessoriesmenu.mainloop()
 
 
+def openinternetools():
+    internetoolsmenu = Toplevel()
+    internetoolsmenu.title("")
+    Button(internetoolsmenu, text='Браузер', command=lambda: start_browser()).grid(row=0, column=0)
+    internetoolsmenu.mainloop()
+
+
 def openprograms():
     programsmenu = Toplevel()
     programsmenu.title("")
     Button(programsmenu, text='Приложения', command=openaccessories).grid(row=0, column=0)
+    Button(programsmenu, text='Вещи интернетов', command=openinternetools).grid(row=1, column=0)
     msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
     msdosbtn.grid(row=2, column=0)
     windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows', command=lambda: explorer_start())
