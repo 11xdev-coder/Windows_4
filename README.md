@@ -16,9 +16,9 @@ My tasks:
       	- [x] Add Parkour Game 
       	- [x] Add Solitaire
       - [x] Add Internet Tools Menu
-        - [x] Add Internet Explorer <-
+        - [x] Add Internet Explorer
       - [ ] Add MultiMedia Menu
-        - [ ] Add media player <-
+        - [x] Add media player
       - [ ] Add System Tools Menu
       - [x] Add Calculator 
       - [x] Add Notepad
@@ -32,11 +32,10 @@ My tasks:
   - [ ] Add settings menu
   - [ ] Add help
   - [ ] Add run
-  - [ ] Add shutdown menu  
-- [ ] Make file explorer
+  - [ ] Add shutdown menu
 
 
-This is an image from browser 
+This is an image from media-player 
 
-![This is an image from browser](images/screenshot.png)
+![This image is from media-player](images/screenshot.png)
 

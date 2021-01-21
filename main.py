@@ -15,6 +15,7 @@ from paint import start_mspaint
 import runner
 from snake import start_snek
 from internet_browser import start_browser
+from media_player import start_media
 
 
 if os.path.exists('setup/success'):
@@ -96,8 +97,9 @@ def detectosforsolitaire():
 
 def opengames():
     gamesmenu = Toplevel()
+    gamesmenu.resizable(False, False)
     gamesmenu.title("")
-    Button(gamesmenu, text='Сапер', command=lambda: runner.start_minesweeper()).grid(row=2, column=0)
+    Button(gamesmenu, text='Сапер', command=lambda: runner.start_minesweeper()).grid(row=0, column=0)
     Button(gamesmenu, text='Змейка', command=lambda: start_snek()).grid(row=1, column=0)
     Button(gamesmenu, text='Солитер', command=detectosforsolitaire).grid(row=2, column=0)
     Button(gamesmenu, text='Паркур', command=detectosforparkour).grid(row=3, column=0)
@@ -106,6 +108,7 @@ def opengames():
 
 def openaccessories():
     accessoriesmenu = Toplevel()
+    accessoriesmenu.resizable(False, False)
     accessoriesmenu.title("")
     Button(accessoriesmenu, text='Игры', command=opengames).grid(row=0, column=0)
     Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
@@ -115,8 +118,17 @@ def openaccessories():
     accessoriesmenu.mainloop()
 
 
+def openmediamenu():
+    mediamenu = Toplevel()
+    mediamenu.resizable(False, False)
+    mediamenu.title("")
+    Button(mediamenu, text='Медия плеер', command=lambda: start_media()).grid(row=0, column=0)
+    mediamenu.mainloop()
+
+
 def openinternetools():
     internetoolsmenu = Toplevel()
+    internetoolsmenu.resizable(False, False)
     internetoolsmenu.title("")
     Button(internetoolsmenu, text='Браузер', command=lambda: start_browser()).grid(row=0, column=0)
     internetoolsmenu.mainloop()
@@ -124,18 +136,21 @@ def openinternetools():
 
 def openprograms():
     programsmenu = Toplevel()
+    programsmenu.resizable(False, False)
     programsmenu.title("")
     Button(programsmenu, text='Приложения', command=openaccessories).grid(row=0, column=0)
     Button(programsmenu, text='Вещи интернетов', command=openinternetools).grid(row=1, column=0)
+    Button(programsmenu, text='Мультимедия', command=openmediamenu).grid(row=2, column=0)
     msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
-    msdosbtn.grid(row=2, column=0)
+    msdosbtn.grid(row=3, column=0)
     windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows', command=lambda: explorer_start())
-    windowsexplorerbtn.grid(row=3, column=0)
+    windowsexplorerbtn.grid(row=4, column=0)
     programsmenu.mainloop()
 
 
 def startclckd():
     startroot = Toplevel()
+    startroot.resizable(False, False)
     startroot.title("")
     startwidth = screen_width-(screen_width + 250)
     startheight = screen_height - (screen_height - 1500)
