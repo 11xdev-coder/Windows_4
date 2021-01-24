@@ -16,6 +16,7 @@ import runner
 from snake import start_snek
 from internet_browser import start_browser
 from media_player import start_media
+from sound_recorder import App
 
 
 if os.path.exists('setup/success'):
@@ -67,6 +68,14 @@ welcomesignin.update()
 welcomesignin.update_idletasks()
 playsound.playsound("sounds/startup.wav")
 welcomesignin.destroy()
+
+
+def start_recorder():
+    main = Toplevel()
+    main.title('Запись звуков')
+    main.geometry('200x100')
+    app = App(main)
+    main.mainloop()
 
 
 def launchnotepad():
@@ -123,6 +132,7 @@ def openmediamenu():
     mediamenu.resizable(False, False)
     mediamenu.title("")
     Button(mediamenu, text='Медия плеер', command=lambda: start_media()).grid(row=0, column=0)
+    Button(mediamenu, text='Запись звуков', command=lambda: start_recorder()).grid(row=1, column=0)
     mediamenu.mainloop()
 
 
