@@ -622,4 +622,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/matvei/Projects/Windows_4/Solitaire_for_windows/run/tesiSolitaire.exe
+  playerPath: /home/matvei/Projects/Windows_4_NOT_Beta/Solitaire_for_windows/run/tesiSolitaire.exe

@@ -622,4 +622,4 @@ ScriptsOnlyBuild:
   platform: 24
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/matvei/Projects/Windows_4/Solitaire/run.x86_64
+  playerPath: /home/matvei/Projects/Windows_4_NOT_Beta/Solitaire/run.x86_64

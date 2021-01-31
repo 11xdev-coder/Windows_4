@@ -1073,4 +1073,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/matvei/Projects/Windows_4/Mini_runner_for_windows/run/Mini_runner.exe
+  playerPath: /home/matvei/Projects/Windows_4_NOT_Beta/Mini_runner_for_windows/run/Mini_runner.exe

@@ -17,6 +17,8 @@ from snake import start_snek
 from internet_browser import start_browser
 from media_player import start_media
 from sound_recorder import App
+from volume_controller import start_volume_controller
+from scanDisk import start_scanDisk
 
 
 if os.path.exists('setup/success'):
@@ -45,7 +47,7 @@ Label(signin, text="Имя: ").grid(row=1, column=0)
 name = Entry(signin)
 name.grid(row=1, column=1)
 Button(signin, text='OK', command=lambda: checkname(name.get(), signin), width=10).grid(row=0, column=2)
-Button(signin, text='Отмена', command=lambda: signin.destroy(), width=10).grid(row=1, column=2)
+Button(signin, text='Отмена', command=lambda: sys.exit(0), width=10).grid(row=1, column=2)
 signin.mainloop()
 
 welcomesignin = Tk()
@@ -115,6 +117,14 @@ def opengames():
     gamesmenu.mainloop()
 
 
+def opensystemtools():
+    systemtoolsmenu = Toplevel()
+    systemtoolsmenu.resizable(False, False)
+    systemtoolsmenu.title("")
+    Button(systemtoolsmenu, text='ScanDisk', command=lambda: start_scanDisk()).grid(row=0, column=0)
+    systemtoolsmenu.mainloop()
+
+
 def openaccessories():
     accessoriesmenu = Toplevel()
     accessoriesmenu.resizable(False, False)
@@ -133,6 +143,7 @@ def openmediamenu():
     mediamenu.title("")
     Button(mediamenu, text='Медия плеер', command=lambda: start_media()).grid(row=0, column=0)
     Button(mediamenu, text='Запись звуков', command=lambda: start_recorder()).grid(row=1, column=0)
+    Button(mediamenu, text='Настройки звука', command=lambda: start_volume_controller()).grid(row=2, column=0)
     mediamenu.mainloop()
 
 
@@ -151,10 +162,11 @@ def openprograms():
     Button(programsmenu, text='Приложения', command=openaccessories).grid(row=0, column=0)
     Button(programsmenu, text='Вещи интернетов', command=openinternetools).grid(row=1, column=0)
     Button(programsmenu, text='Мультимедия', command=openmediamenu).grid(row=2, column=0)
+    Button(programsmenu, text='Системные вещи', command=opensystemtools).grid(row=3, column=0)
     msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
-    msdosbtn.grid(row=3, column=0)
+    msdosbtn.grid(row=4, column=0)
     windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows', command=lambda: explorer_start())
-    windowsexplorerbtn.grid(row=4, column=0)
+    windowsexplorerbtn.grid(row=5, column=0)
     programsmenu.mainloop()
 
 
@@ -174,7 +186,7 @@ def startclckd():
 
 
 desktop = Tk()
-if showWelcomeScreen and not os.path.exists("system/welcomeFalse"):
+if showWelcomeScreen:
     tips = Toplevel()
     bold_font = Font(family='Helvetica', size=20)
     very_bold_font = Font(family="Helvetica", size=20, weight='bold')
@@ -211,7 +223,9 @@ if showWelcomeScreen and not os.path.exists("system/welcomeFalse"):
 
     def close():
         if showing.get() == 0:
-            os.mkdir('system/welcomeFalse')
+            settingsfile = open("settings.py", "a")
+            settingsfile.write("\nshowWelcomeScreen = False")
+            settingsfile.close()
         tips.destroy()
 
     closebtn = Button(tips, text='Закрыть', command=close)
