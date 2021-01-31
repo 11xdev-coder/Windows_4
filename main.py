@@ -130,6 +130,9 @@ def openaccessories():
     accessoriesmenu.resizable(False, False)
     accessoriesmenu.title("")
     Button(accessoriesmenu, text='Игры', command=opengames).grid(row=0, column=0)
+    Button(accessoriesmenu, text='Вещи интернетов', command=openinternetools).grid(row=1, column=0)
+    Button(accessoriesmenu, text='Мультимедия', command=openmediamenu).grid(row=2, column=0)
+    Button(accessoriesmenu, text='Системные вещи', command=opensystemtools).grid(row=3, column=0)
     Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
     Button(accessoriesmenu, text='Блокнот', command=lambda: launchnotepad()).grid(row=5, column=0)
     Button(accessoriesmenu, text='Редактор файлов разметки', command=lambda: launchword()).grid(row=6, column=0)
@@ -155,18 +158,24 @@ def openinternetools():
     internetoolsmenu.mainloop()
 
 
+def openstartup():
+    startupmenu = Toplevel()
+    startupmenu.resizable(False, False)
+    startupmenu.title("")
+    Label(startupmenu, text='(пусто)').grid(row=0, column=0)
+    startupmenu.mainloop()
+
+
 def openprograms():
     programsmenu = Toplevel()
     programsmenu.resizable(False, False)
     programsmenu.title("")
     Button(programsmenu, text='Приложения', command=openaccessories).grid(row=0, column=0)
-    Button(programsmenu, text='Вещи интернетов', command=openinternetools).grid(row=1, column=0)
-    Button(programsmenu, text='Мультимедия', command=openmediamenu).grid(row=2, column=0)
-    Button(programsmenu, text='Системные вещи', command=opensystemtools).grid(row=3, column=0)
+    Button(programsmenu, text='StartUp', command=openstartup).grid(row=1, column=0)
     msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
-    msdosbtn.grid(row=4, column=0)
+    msdosbtn.grid(row=2, column=0)
     windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows', command=lambda: explorer_start())
-    windowsexplorerbtn.grid(row=5, column=0)
+    windowsexplorerbtn.grid(row=3, column=0)
     programsmenu.mainloop()
 
 

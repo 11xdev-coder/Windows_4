@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 import pygame
 
 
@@ -21,8 +22,11 @@ def close_file(playbtn_name, stopbtn_name):
 
 
 def play_targeted_sound(targetPath):
-    pygame.mixer.music.load(targetPath)
-    pygame.mixer.music.play(loops=0)
+    try:
+        pygame.mixer.music.load(targetPath)
+        pygame.mixer.music.play(loops=0)
+    except:
+        messagebox.showerror("МедияПлеер", "Не удалось воспроизвести файл:%s. Проверьте, является ли этот файл медия файлом" % targetPath)
 
 
 def stop_targeted_sound():

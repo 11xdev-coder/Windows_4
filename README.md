@@ -17,14 +17,18 @@ My tasks:
       	- [x] Add Solitaire
       - [x] Add Internet Tools Menu
         - [x] Add Internet Explorer
-      - [ ] Add MultiMedia Menu
+      - [x] Add MultiMedia Menu
         - [x] Add media player
-      - [ ] Add System Tools Menu
+        - [x] Add Sound Recorder
+        - [x] Add Volume Controller
+      - [x] Add System Tools Menu
+        - [x] Add ScanDisk
       - [x] Add Calculator 
       - [x] Add Notepad
       - [x] Add Paint 
       - [x] Add WordPad
     - [ ] Add StartUp menu
+      - [ ] Add uuuhhh... Empty?
     - [x] Add MS-DOS Prompt 
     - [x] Add Windows Explorer 
   - [ ] Add Documents Menu
@@ -33,9 +37,4 @@ My tasks:
   - [ ] Add help
   - [ ] Add run
   - [ ] Add shutdown menu
-
-
-This is an image from media-player 
-
-![This image is from media-player](images/screenshot.png)
-
+  
