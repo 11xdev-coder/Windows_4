@@ -39,3 +39,15 @@ My tasks:
   - [ ] Add run
   - [ ] Add shutdown menu
   
+
+How to run it:
+  1. Download this project.
+  2. Install python 3.8.
+  3. Open command line and enter the project you downloaded using ```cd```.
+  4. Enter ```python main.py``` for Windows and ```python3 main.py``` for Linux.
+  5. If you've errors like 'Couldn't find \<library name\> you need enter ```pip install 'library name'``` for Windows
+     and ```pip3 install 'library name'``` for Linux and if you want to install library to user folder enter:
+     ```pip3 install --user 'library name'```'
+  6. Enjoy!   
+
+  

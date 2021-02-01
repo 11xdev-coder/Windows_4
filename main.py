@@ -19,6 +19,7 @@ from media_player import start_media
 from sound_recorder import App
 from volume_controller import start_volume_controller
 from scanDisk import start_scanDisk
+from readme_file import start_readme
 
 
 if os.path.exists('setup/success'):
@@ -179,6 +180,14 @@ def openprograms():
     programsmenu.mainloop()
 
 
+def openDocs():
+    docsMenu = Toplevel()
+    docsMenu.resizable(False, False)
+    docsMenu.title("")
+    Button(docsMenu, text='Прочитай меня', command=lambda: start_readme()).grid(row=0, column=0)
+    docsMenu.mainloop()
+
+
 def startclckd():
     startroot = Toplevel()
     startroot.resizable(False, False)
@@ -188,6 +197,8 @@ def startclckd():
     startroot.wm_attributes("-topmost", 1)
     programsbtn = Button(startroot, text="Программы", command=openprograms)
     programsbtn.grid(row=0, column=0)
+    docsMenuBtn = Button(startroot, text="Документы", command=openDocs)
+    docsMenuBtn.grid(row=1, column=0)
     while True:
         startroot.update()
         startroot.update_idletasks()
