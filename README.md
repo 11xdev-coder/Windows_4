@@ -8,8 +8,8 @@ Windows 4 <img src="https://emoji.gg/assets/emoji/7009_windows95.png" height="30
 My tasks:
 - [x] Add Welcome Screen
 - [ ] Add start menu
-  - [ ] Add Programs Menu
-    - [ ] Add Accessories menu
+  - [x] Add Programs Menu
+    - [x] Add Accessories menu
       - [x] Add Games Menu
       	- [x] Add MineSweeper
       	- [x] Add Snake 
@@ -27,11 +27,12 @@ My tasks:
       - [x] Add Notepad
       - [x] Add Paint 
       - [x] Add WordPad
-    - [ ] Add StartUp menu
-      - [ ] Add uuuhhh... Empty?
+    - [x] Add StartUp menu
+      - [x] Add uuuhhh... Empty?
     - [x] Add MS-DOS Prompt 
     - [x] Add Windows Explorer 
   - [ ] Add Documents Menu
+    - [ ] Add Readme file
   - [ ] Add find menu
   - [ ] Add settings menu
   - [ ] Add help
