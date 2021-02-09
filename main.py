@@ -20,7 +20,7 @@ from sound_recorder import App
 from volume_controller import start_volume_controller
 from scanDisk import start_scanDisk
 from readme_file import start_readme
-
+from control_panel import start_control
 
 if os.path.exists('setup/success'):
     pass
@@ -188,17 +188,27 @@ def openDocs():
     docsMenu.mainloop()
 
 
+def openSettings():
+    setMenu = Toplevel()
+    setMenu.resizable(False, False)
+    setMenu.title("")
+    Button(setMenu, text='Панель управления', command=lambda: start_control()).grid(row=0, column=0)
+    setMenu.mainloop()
+
+
 def startclckd():
     startroot = Toplevel()
     startroot.resizable(False, False)
     startroot.title("")
-    startwidth = screen_width-(screen_width + 250)
+    startwidth = screen_width - (screen_width + 250)
     startheight = screen_height - (screen_height - 1500)
     startroot.wm_attributes("-topmost", 1)
     programsbtn = Button(startroot, text="Программы", command=openprograms)
     programsbtn.grid(row=0, column=0)
     docsMenuBtn = Button(startroot, text="Документы", command=openDocs)
     docsMenuBtn.grid(row=1, column=0)
+    setMenuBtn = Button(startroot, text="Настройки", command=openSettings)
+    setMenuBtn.grid(row=2, column=0)
     while True:
         startroot.update()
         startroot.update_idletasks()
@@ -223,6 +233,7 @@ if showWelcomeScreen:
     tipLabel = Label(frame, text=tip1, bg='#ffffcc')
     tipLabel.grid(row=1, column=0, columnspan=2)
 
+
     def nextip():
         global tipNumber
         tipNumber += 1
@@ -236,10 +247,13 @@ if showWelcomeScreen:
             tipNumber = 1
             tipLabel["text"] = tip1
 
+
     nextTip = Button(tips, text='Следующая подсказка', command=nextip).grid(row=1, column=6)
     showing = IntVar()
-    showcheckbox = Checkbutton(tips, text='Показывать это окно при последующих запусках Windows', variable=showing, onvalue=1, offvalue=0)
+    showcheckbox = Checkbutton(tips, text='Показывать это окно при последующих запусках Windows', variable=showing,
+                               onvalue=1, offvalue=0)
     showcheckbox.grid(row=2, column=0, columnspan=4)
+
 
     def close():
         if showing.get() == 0:
@@ -247,6 +261,7 @@ if showWelcomeScreen:
             settingsfile.write("\nshowWelcomeScreen = False")
             settingsfile.close()
         tips.destroy()
+
 
     closebtn = Button(tips, text='Закрыть', command=close)
     closebtn.grid(row=2, column=6)

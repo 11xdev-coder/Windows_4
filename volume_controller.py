@@ -1,9 +1,11 @@
 from tkinter import *
 from tkinter.ttk import *
 import alsaaudio
+import sys
 
 
 def volume(x):
+    # if sys.platform == 'linux' or sys.platform == 'linux2':
     mix = alsaaudio.Mixer()
     x = float(x)
     x = int(x)

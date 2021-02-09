@@ -31,10 +31,15 @@ My tasks:
       - [x] Add uuuhhh... Empty?
     - [x] Add MS-DOS Prompt 
     - [x] Add Windows Explorer 
-  - [ ] Add Documents Menu
-    - [ ] Add Readme file
+  - [x] Add Documents Menu
+    - [x] Add Readme file
   - [ ] Add find menu
   - [ ] Add settings menu
+    - [ ] Add Control Panel
+      - [ ] Add Hardwares
+      - [ ] Add Programs
+      - [ ] Add Date/Time
+      - [ ] Add Display
   - [ ] Add help
   - [ ] Add run
   - [ ] Add shutdown menu
@@ -48,6 +53,6 @@ How to run it:
   5. If you've errors like 'Couldn't find \<library name\> you need enter ```pip install 'library name'``` for Windows
      and ```pip3 install 'library name'``` for Linux and if you want to install library to user folder enter:
      ```pip3 install --user 'library name'```'
-  6. Enjoy!   
+  6. Enjoy!
 
   
