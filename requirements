@@ -1,0 +1,13 @@
+playsound
+pillow
+psutil
+scapy
+PyQt5
+pygame
+pyscreenshot
+pyaudio
+sounddevice
+CFFI
+numpy
+scipy
+usb
