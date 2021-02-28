@@ -2,9 +2,11 @@ import pygame
 import time
 
 from minesweeper import *
+from tkinter import *
 
 
-def start_minesweeper():
+def start_minesweeper(gamesmenu):
+    gamesmenu.destroy()
     HEIGHT = 8
     WIDTH = 8
     MINES = 8

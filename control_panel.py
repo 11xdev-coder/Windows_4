@@ -2,7 +2,8 @@ from tkinter import *
 from tkinter.ttk import *
 from tkinter import messagebox
 from tkinter import filedialog
-import sys, os, subprocess
+import sys, os, subprocess, time
+from PIL import Image
 
 
 def detect_cd_rom(hardware_types):
@@ -68,7 +69,8 @@ def add_programs():
     Label(inunframe, image=deleteprogramimg).grid(row=2, column=0)
     Label(inunframe, text='Следующее программное обеспечение может быть автоматически удалено \n'
                           'Windows. Чтобы удалить программу или изменить ее установленные \n'
-                          'компоненты, выберите ее из списка и нажмите \n«Удалить».').grid(row=2, column=1, columnspan=3)
+                          'компоненты, выберите ее из списка и нажмите \n«Удалить».').grid(row=2, column=1,
+                                                                                           columnspan=3)
     processes = [line.split() for line in subprocess.check_output("ps").splitlines()]
     programs = Listbox(inunframe)
 
@@ -81,24 +83,307 @@ def add_programs():
 
     nb.add(inunframe, text='Установить/Удалить')
 
+    winsetupframe = Frame(nb)
 
-    win
+    Label(winsetupframe, text='Чтобы добавить или удалить компонент, установите флажок.').grid(row=0, column=0,
+                                                                                               columnspan=4)
+    Label(winsetupframe, text='Компоненты:')
+    Checkbutton(winsetupframe, text='Параметры доступности').grid(row=2, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Приложения').grid(row=3, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Связь').grid(row=4, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Дисковые инструменты').grid(row=5, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Microders Exchange').grid(row=6, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Microders факс').grid(row=7, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Многоязычная поддержка').grid(row=8, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Мультимедиа').grid(row=9, column=0, columnspan=4)
+    Checkbutton(winsetupframe, text='Сеть Microders').grid(row=10, column=0, columnspan=4)
+
+    Button(winsetupframe, text='OK', command=lambda: messagebox.showerror('', 'Вставьте диск '
+                                                                              'названный \"Windows 4 NOT CD-ROM\" и '
+                                                                              'нажмите OK')).grid(row=11, column=0)
+    Button(winsetupframe, text='Отмена', command=lambda: ap.destroy()).grid(row=11, column=1)
+    Button(winsetupframe, text='Применить', command=lambda: messagebox.showerror('', 'Вставьте диск '
+                                                                                     'названный \"Windows 4 NOT CD-ROM\" и '
+                                                                                     'нажмите OK')).grid(row=11,
+                                                                                                         column=2)
+
+    nb.add(winsetupframe, text='Установка Windows')
+
+    startupframe = Frame(nb)
+
+    floppyStartUpDisk = PhotoImage(file='images/control_panel_icons/floppy_startup_disk.png')
+
+    Label(startupframe, image=floppyStartUpDisk).grid(row=0, column=0)
+
+    Label(startupframe, text='Если у вас возникли проблемы с запуском Windows, вы можете \nиспользовать '
+                             'загрузочный диск '
+                             'для запуска компьютера, запуска \nдиагностических программ и устранения любых проблем. '
+                             'Чтобы создать загрузочный диск,\n нажмите «Создать диск ...». '
+                             'Вам понадобится одна дискета.').grid(row=0, column=1, columnspan=2)
+
+    Button(startupframe, text='Создать диск...', command=lambda: messagebox.showerror('Ошибка создания загрузочного '
+                                                                                      'диска',
+                                                                                      'Диск «A» не является дисководом '
+                                                                                      'для '
+                                                                                      'гибких '
+                                                                                      'дисков или подключен к сетевому '
+                                                                                      'диску. '
+                                                                                      'Windows не может создать '
+                                                                                      'загрузочный '
+                                                                                      'диск')).grid(row=1, column=2)
+
+    nb.add(startupframe, text='Загрузочный диск')
 
     ap.mainloop()
 
 
-def start_control():
+def dateTime():
+    dt = Toplevel()
+    dt.title("Свойства Даты/Времени")
+    dt.resizable(False, False)
+
+    nb = Notebook(dt)
+    nb.pack(fill=BOTH, expand=YES)
+
+    data_time_frame = Frame(nb)
+
+    date = LabelFrame(data_time_frame, text='Дата')
+    date.grid(row=0, column=0)
+
+    monthes = Combobox(date, values=('Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                                     'Октябрь', 'Ноябрь', 'Декабрь'))
+    monthes.grid(row=0, column=0)
+    monthes.current()
+
+    time_and_date = time.asctime()
+    time_and_date = time_and_date.split()
+    if time_and_date[1] == 'Jan':
+        monthes.current(0)
+
+    elif time_and_date[1] == 'Feb':
+        monthes.current(1)
+
+    elif time_and_date[1] == 'Mar':
+        monthes.current(2)
+
+    elif time_and_date[1] == 'Apr':
+        monthes.current(3)
+
+    elif time_and_date[1] == 'May':
+        monthes.current(4)
+
+    elif time_and_date[1] == 'Jun':
+        monthes.current(5)
+
+    elif time_and_date[1] == 'Jul':
+        monthes.current(6)
+
+    elif time_and_date[1] == 'Aug':
+        monthes.current(7)
+
+    elif time_and_date[1] == 'Sep':
+        monthes.current(8)
+
+    elif time_and_date[1] == 'Oct':
+        monthes.current(9)
+
+    elif time_and_date[1] == 'Nov':
+        monthes.current(10)
+
+    elif time_and_date[1] == 'Dec':
+        monthes.current(11)
+
+    year = Spinbox(date, from_=2020, to=3000)
+
+    if time_and_date[4] >= '2020':
+        year.insert(END, time_and_date[4])
+    else:
+        year.insert(END, 'error')
+
+    year.grid(row=0, column=1)
+
+    days = Frame(date, relief=SUNKEN)
+    if time_and_date[1] == 'Jan' or time_and_date[1] == 'Mar' or time_and_date[1] == 'Apr' \
+            or time_and_date[1] == 'May' or time_and_date[1] == 'Jul' or time_and_date[1] == 'Aug' \
+            or time_and_date[1] == 'Oct' or time_and_date[1] == 'Dec':
+        for dnf in range(0, 8):
+            Button(days, text=dnf).grid(row=0, column=dnf)
+
+        for dnf in range(7, 15):
+            Button(days, text=dnf).grid(row=1, column=dnf - 7)
+
+        for dnf in range(14, 22):
+            Button(days, text=dnf).grid(row=2, column=dnf - 14)
+
+        for dnf in range(22, 30):
+            Button(days, text=dnf).grid(row=3, column=dnf - 22)
+
+        for dnf in range(30, 32):
+            Button(days, text=dnf).grid(row=4, column=dnf - 30)
+
+    elif time_and_date[1] == 'Feb':
+        for f in range(0, 8):
+            Button(days, text=f).grid(row=0, column=f)
+
+        for f in range(7, 15):
+            Button(days, text=f).grid(row=1, column=f - 7)
+
+        for f in range(14, 22):
+            Button(days, text=f).grid(row=2, column=f - 14)
+
+        for f in range(22, 28):
+            Button(days, text=f).grid(row=3, column=f - 22)
+
+    else:
+        for o in range(0, 8):
+            Button(days, text=o).grid(row=0, column=o)
+
+        for o in range(7, 15):
+            Button(days, text=o).grid(row=1, column=o - 7)
+
+        for o in range(14, 22):
+            Button(days, text=o).grid(row=2, column=o - 14)
+
+        for o in range(22, 31):
+            Button(days, text=o).grid(row=3, column=o - 22)
+
+    days.grid(row=1, column=0, columnspan=2)
+
+    time_frame = LabelFrame(data_time_frame, text='Время')
+    time_frame.grid(row=0, column=1)
+
+    timelbl = Label(time_frame, text=time_and_date[3])
+    timelbl.grid(row=0, column=0)
+
+    nb.add(data_time_frame, text='Дата/Время')
+
+    Button(data_time_frame, text='OK', command=lambda: data_time_frame.destroy()).grid(row=4, column=0)
+    Button(data_time_frame, text='Отменить', command=lambda: data_time_frame.destroy()).grid(row=4, column=1)
+
+    while True:
+        dt.update()
+        dt.update_idletasks()
+        time_and_date = time.asctime().split()
+        timelbl['text'] = time_and_date[3]
+
+
+def exitandapplybg(desktop, root, colour):
+    root.destroy()
+    try:
+        desktop['bg'] = colour.get()
+    except:
+        messagebox.showerror('Дисплэй', 'Не удалось разпознать введенный вами цвет!')
+
+
+def applybg(desktop, colour):
+    try:
+        desktop['bg'] = colour.get()
+    except:
+        messagebox.showerror('Дисплэй', 'Не удалось разпознать введенный вами цвет!')
+
+
+def applysv(desktoplbl, screen_width, screen_height, screensavers):
+    if screensavers.get() == 'Windows 4 NOT':
+        # Opening image with Pillow
+        screensavernormal = Image.open("images/screensavers/windows_4.png")
+        width = screen_width
+        height = screen_height
+        # Resizing image
+        screensaverresized = screensavernormal.resize((width, height - 125), Image.ANTIALIAS)
+        # Saving resized image
+        screensaverresized.save("images/screensavers/windows_4.png")
+        # Opening image with tkinter
+        fd = open('system/desktopbg.txt', 'w')
+        fd.write('images/screensavers/windows_4.png')
+
+        img = PhotoImage(file='images/screensavers/windows_4.png')
+
+        desktoplbl.configure(image=img)
+        desktoplbl.image = img
+
+        fd.close()
+
+
+def exitandapplysv(desktoplbl, desktop, root, screen_width, screen_height, screensavers):
+    if screensavers.get() == 'Windows 4 NOT':
+        # Opening image with Pillow
+        screensavernormal = Image.open("images/screensavers/windows_4.png")
+        width = screen_width
+        height = screen_height
+        # Resizing image
+        screensaverresized = screensavernormal.resize((width, height - 125), Image.ANTIALIAS)
+        # Saving resized image
+        screensaverresized.save("images/screensavers/windows_4.png")
+        # Opening image with tkinter
+        fd = open('system/desktopbg.txt', 'w')
+        fd.write('images/screensavers/windows_4.png')
+
+        img = PhotoImage(file='images/screensavers/windows_4.png')
+
+        desktoplbl.configure(image=img)
+        desktoplbl.image = img
+
+        fd.close()
+    root.destroy()
+
+
+def display(desktop, desktoplbl):
+    d = Toplevel()
+    d.resizable(False, False)
+    d.title('Дисплэй')
+    screen_width = d.winfo_screenwidth()
+    screen_height = d.winfo_screenheight()
+
+    nb = Notebook(d)
+
+    bgframe = Frame(nb)
+
+    Label(bgframe, text='Введите цвет фона:(английской раскладкой или RGB)').grid(row=0, column=0)
+    colour = Entry(bgframe)
+    colour.grid(row=1, column=0)
+
+    Button(bgframe, text='OK', command=lambda: exitandapplybg(desktop, d, colour)).grid(row=2, column=0)
+    Button(bgframe, text='Отменить', command=lambda: d.destroy()).grid(row=2, column=1)
+    Button(bgframe, text='Применить', command=lambda: applybg(desktop, colour)).grid(row=2, column=2)
+
+    svframe = Frame(nb)
+
+    svlblframe = Label(svframe, text='Заставка')
+
+    screensaversvalue = StringVar()
+    svs = Combobox(svlblframe, values=('Windows 4 NOT', 'n00b'), textvariable=screensaversvalue)
+    svs.current(0)
+    svs.grid(row=0, column=0)
+
+    svlblframe.grid(row=0, column=0)
+
+    Button(svframe, text='OK', command=lambda: exitandapplysv(desktoplbl, desktop, d, screen_width, screen_height, svs)) \
+        .grid(row=1, column=0)
+    Button(svframe, text='Отменить', command=lambda: d.destroy()).grid(row=1, column=1)
+    Button(svframe, text='Применить', command=lambda: applysv(desktop, screen_width, screen_height, svs)) \
+        .grid(row=1, column=2)
+
+    nb.add(bgframe, text='Фон')
+    nb.add(svframe, text='Заставка')
+    nb.grid()
+
+    d.mainloop()
+
+
+def start_control(desktop, desktoplbl, setMenu):
+    setMenu.destroy()
     root = Toplevel()
     root.title('Панель управления')
     hardwareimg = PhotoImage(file='images/control_panel_icons/add_hardware.png')
     programsimg = PhotoImage(file='images/control_panel_icons/add_programs.png')
+    dateTimeImg = PhotoImage(file='images/control_panel_icons/date_time.png')
+    displayImg = PhotoImage(file='images/control_panel_icons/display.png')
     Button(root, image=hardwareimg, command=lambda: add_new_hardware()).grid(row=0, column=0)
     Label(root, text='Добавить новое \nоборудование').grid(row=1, column=0)
     Button(root, image=programsimg, command=lambda: add_programs()).grid(row=0, column=1)
     Label(root, text='Добавить/Удалить \nпрограммы').grid(row=1, column=1)
+    Button(root, image=dateTimeImg, command=lambda: dateTime()).grid(row=0, column=2)
+    Label(root, text='Дата/Время').grid(row=1, column=2)
+    Button(root, image=displayImg, command=lambda: display(desktop, desktoplbl)).grid(row=0, column=3)
+    Label(root, text='Дисплэй').grid(row=1, column=3)
     root.mainloop()
-
-
-tk = Tk()
-start_control()
-tk.mainloop()

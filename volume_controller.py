@@ -12,7 +12,8 @@ def volume(x):
     mix.setvolume(x)
 
 
-def start_volume_controller():
+def start_volume_controller(mediamenu):
+    mediamenu.destroy()
     mix = alsaaudio.Mixer()
     root = Toplevel()
     root.resizable(False, False)

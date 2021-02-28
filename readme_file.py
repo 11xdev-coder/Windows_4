@@ -1,7 +1,8 @@
 from tkinter import *
 
 
-def start_readme():
+def start_readme(docsMenu):
+    docsMenu.destroy()
     root = Toplevel()
     root.title('Прочитай меня')
     text_field = Text(root)

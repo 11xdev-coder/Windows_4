@@ -33,7 +33,8 @@ def stop_targeted_sound():
     pygame.mixer.music.stop()
 
 
-def start_media():
+def start_media(mediamenu):
+    mediamenu.destroy()
     global targetPath
     root = Toplevel()
     pygame.init()

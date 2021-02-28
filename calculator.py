@@ -3,7 +3,8 @@ from tkinter import *
 memory = 0
 
 
-def start_calc():
+def start_calc(accessoriesmenu):
+    accessoriesmenu.destroy()
     def deletnum():
         notlength = len(string.get())
         length = notlength - 1

@@ -73,7 +73,8 @@ playsound.playsound("sounds/startup.wav")
 welcomesignin.destroy()
 
 
-def start_recorder():
+def start_recorder(mediamenu):
+    mediamenu.destroy()
     main = Toplevel()
     main.title('Запись звуков')
     main.geometry('200x100')
@@ -81,85 +82,98 @@ def start_recorder():
     main.mainloop()
 
 
-def launchnotepad():
+def launchnotepad(accessoriesmenu):
+    accessoriesmenu.destroy()
     fornotepad = Toplevel()
     te = text_editor(fornotepad)
     fornotepad.mainloop()
 
 
-def launchword():
+def launchword(accessoriesmenu):
+    accessoriesmenu.destroy()
     forword = Toplevel()
     teword = word_editor(forword)
     forword.mainloop()
 
 
-def detectosforparkour():
+def detectosforparkour(gamesmenu):
+    gamesmenu.destroy()
     if platform == 'linux' or platform == 'linux2':
-        os.system("Mini_runner/run.x86_64")
+        os.system("linux_runner.x86_64")
     elif platform == 'win32':
-        os.system('Mini_runner_for_windows/run/Mini_runner.exe')
+        os.system('windows_runner.exe')
 
 
-def detectosforsolitaire():
+def detectosforsolitaire(gamesmenu):
+    gamesmenu.destroy()
     if platform == 'linux' or platform == 'linux2':
-        os.system("Solitaire/run.x86_64")
+        os.system("linux_solitaire.x86_64")
     elif platform == 'win32':
-        os.system('Solitaire_for_windows/run/tesiSolitaire.exe')
+        os.system('windows_solitaire.exe')
 
 
-def opengames():
+def opengames(accessoriesmenu):
+    accessoriesmenu.destroy()
     gamesmenu = Toplevel()
     gamesmenu.resizable(False, False)
     gamesmenu.title("")
-    Button(gamesmenu, text='Сапер', command=lambda: runner.start_minesweeper()).grid(row=0, column=0)
-    Button(gamesmenu, text='Змейка', command=lambda: start_snek()).grid(row=1, column=0)
-    Button(gamesmenu, text='Солитер', command=detectosforsolitaire).grid(row=2, column=0)
-    Button(gamesmenu, text='Паркур', command=detectosforparkour).grid(row=3, column=0)
+    Button(gamesmenu, text='Сапер', command=lambda: runner.start_minesweeper(gamesmenu)).grid(row=0, column=0)
+    Button(gamesmenu, text='Змейка', command=lambda: start_snek(gamesmenu)).grid(row=1, column=0)
+    Button(gamesmenu, text='Солитер', command=lambda: detectosforsolitaire(gamesmenu)).grid(row=2, column=0)
+    Button(gamesmenu, text='Паркур', command=lambda: detectosforparkour(gamesmenu)).grid(row=3, column=0)
     gamesmenu.mainloop()
 
 
-def opensystemtools():
+def opensystemtools(accessoriesmenu):
+    accessoriesmenu.destroy()
     systemtoolsmenu = Toplevel()
     systemtoolsmenu.resizable(False, False)
     systemtoolsmenu.title("")
-    Button(systemtoolsmenu, text='ScanDisk', command=lambda: start_scanDisk()).grid(row=0, column=0)
+    Button(systemtoolsmenu, text='ScanDisk', command=lambda: start_scanDisk(systemtoolsmenu)).grid(row=0, column=0)
     systemtoolsmenu.mainloop()
 
 
-def openaccessories():
+def openaccessories(programsmenu):
+    programsmenu.destroy()
     accessoriesmenu = Toplevel()
     accessoriesmenu.resizable(False, False)
     accessoriesmenu.title("")
-    Button(accessoriesmenu, text='Игры', command=opengames).grid(row=0, column=0)
-    Button(accessoriesmenu, text='Вещи интернетов', command=openinternetools).grid(row=1, column=0)
-    Button(accessoriesmenu, text='Мультимедия', command=openmediamenu).grid(row=2, column=0)
-    Button(accessoriesmenu, text='Системные вещи', command=opensystemtools).grid(row=3, column=0)
-    Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc()).grid(row=4, column=0)
-    Button(accessoriesmenu, text='Блокнот', command=lambda: launchnotepad()).grid(row=5, column=0)
-    Button(accessoriesmenu, text='Редактор файлов разметки', command=lambda: launchword()).grid(row=6, column=0)
-    Button(accessoriesmenu, text='Рисовалка', command=lambda: start_mspaint()).grid(row=7, column=0)
+    Button(accessoriesmenu, text='Игры', command=lambda: opengames(accessoriesmenu)).grid(row=0, column=0)
+    Button(accessoriesmenu, text='Вещи интернетов', command=lambda: openinternetools(accessoriesmenu)).grid(row=1,
+                                                                                                            column=0)
+    Button(accessoriesmenu, text='Мультимедия', command=lambda: openmediamenu(accessoriesmenu)).grid(row=2, column=0)
+    Button(accessoriesmenu, text='Системные вещи', command=lambda: opensystemtools(accessoriesmenu)).grid(row=3,
+                                                                                                          column=0)
+    Button(accessoriesmenu, text='Калькулятор', command=lambda: start_calc(accessoriesmenu)).grid(row=4, column=0)
+    Button(accessoriesmenu, text='Блокнот', command=lambda: launchnotepad(accessoriesmenu)).grid(row=5, column=0)
+    Button(accessoriesmenu, text='Редактор файлов разметки', command=lambda: launchword(accessoriesmenu)).grid(row=6,
+                                                                                                               column=0)
+    Button(accessoriesmenu, text='Рисовалка', command=lambda: start_mspaint(accessoriesmenu)).grid(row=7, column=0)
     accessoriesmenu.mainloop()
 
 
-def openmediamenu():
+def openmediamenu(accessoriesmenu):
+    accessoriesmenu.destroy()
     mediamenu = Toplevel()
     mediamenu.resizable(False, False)
     mediamenu.title("")
-    Button(mediamenu, text='Медия плеер', command=lambda: start_media()).grid(row=0, column=0)
-    Button(mediamenu, text='Запись звуков', command=lambda: start_recorder()).grid(row=1, column=0)
-    Button(mediamenu, text='Настройки звука', command=lambda: start_volume_controller()).grid(row=2, column=0)
+    Button(mediamenu, text='Медия плеер', command=lambda: start_media(mediamenu)).grid(row=0, column=0)
+    Button(mediamenu, text='Запись звуков', command=lambda: start_recorder(mediamenu)).grid(row=1, column=0)
+    Button(mediamenu, text='Настройки звука', command=lambda: start_volume_controller(mediamenu)).grid(row=2, column=0)
     mediamenu.mainloop()
 
 
-def openinternetools():
+def openinternetools(accessoriesmenu):
+    accessoriesmenu.destroy()
     internetoolsmenu = Toplevel()
     internetoolsmenu.resizable(False, False)
     internetoolsmenu.title("")
-    Button(internetoolsmenu, text='Браузер', command=lambda: start_browser()).grid(row=0, column=0)
+    Button(internetoolsmenu, text='Браузер', command=lambda: start_browser(internetoolsmenu)).grid(row=0, column=0)
     internetoolsmenu.mainloop()
 
 
-def openstartup():
+def openstartup(programsmenu):
+    programsmenu.destroy()
     startupmenu = Toplevel()
     startupmenu.resizable(False, False)
     startupmenu.title("")
@@ -167,32 +181,38 @@ def openstartup():
     startupmenu.mainloop()
 
 
-def openprograms():
+def openprograms(startroot):
+    startroot.destroy()
     programsmenu = Toplevel()
     programsmenu.resizable(False, False)
     programsmenu.title("")
-    Button(programsmenu, text='Приложения', command=openaccessories).grid(row=0, column=0)
-    Button(programsmenu, text='StartUp', command=openstartup).grid(row=1, column=0)
-    msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos())
+    Button(programsmenu, text='Приложения', command=lambda: openaccessories(programsmenu)).grid(row=0, column=0)
+    Button(programsmenu, text='StartUp', command=lambda: openstartup(programsmenu)).grid(row=1, column=0)
+    msdosbtn = Button(programsmenu, text='MS-DOS Prompt', command=lambda: startms_dos(programsmenu))
     msdosbtn.grid(row=2, column=0)
-    windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows', command=lambda: explorer_start())
+    windowsexplorerbtn = Button(programsmenu, text='Просмоторщик файлов Windows',
+                                command=lambda: explorer_start(programsmenu))
     windowsexplorerbtn.grid(row=3, column=0)
     programsmenu.mainloop()
 
 
-def openDocs():
+def openDocs(startroot):
+    startroot.destroy()
     docsMenu = Toplevel()
     docsMenu.resizable(False, False)
     docsMenu.title("")
-    Button(docsMenu, text='Прочитай меня', command=lambda: start_readme()).grid(row=0, column=0)
+    Button(docsMenu, text='Прочитай меня', command=lambda: start_readme(docsMenu)).grid(row=0, column=0)
     docsMenu.mainloop()
 
 
-def openSettings():
+def openSettings(startroot):
+    startroot.destroy()
     setMenu = Toplevel()
     setMenu.resizable(False, False)
     setMenu.title("")
-    Button(setMenu, text='Панель управления', command=lambda: start_control()).grid(row=0, column=0)
+    Button(setMenu, text='Панель управления', command=lambda: start_control(desktop, desktoplbl, setMenu)).grid(row=0,
+                                                                                                                column=0
+                                                                                                                )
     setMenu.mainloop()
 
 
@@ -200,15 +220,17 @@ def startclckd():
     startroot = Toplevel()
     startroot.resizable(False, False)
     startroot.title("")
+    startroot.protocol("WM_DELETE_WINDOW", lambda: print('Nope'))
     startwidth = screen_width - (screen_width + 250)
     startheight = screen_height - (screen_height - 1500)
     startroot.wm_attributes("-topmost", 1)
-    programsbtn = Button(startroot, text="Программы", command=openprograms)
+    programsbtn = Button(startroot, text="Программы", command=lambda: openprograms(startroot))
     programsbtn.grid(row=0, column=0)
-    docsMenuBtn = Button(startroot, text="Документы", command=openDocs)
+    docsMenuBtn = Button(startroot, text="Документы", command=lambda: openDocs(startroot))
     docsMenuBtn.grid(row=1, column=0)
-    setMenuBtn = Button(startroot, text="Настройки", command=openSettings)
+    setMenuBtn = Button(startroot, text="Настройки", command=lambda: openSettings(startroot))
     setMenuBtn.grid(row=2, column=0)
+    Button(startroot, text='Закрыть', command=lambda: startroot.destroy()).grid(row=7, column=0)
     while True:
         startroot.update()
         startroot.update_idletasks()
@@ -267,10 +289,21 @@ if showWelcomeScreen:
     closebtn.grid(row=2, column=6)
 
 desktop.title('Windows 4 or 95?')
-desktop['bg'] = "dark blue"
+desktop['bg'] = 'dark blue'
+
+img = PhotoImage()
+fd = open('system/desktopbg.txt', 'r')
+if fd.read() == 'images/screensavers/windows_4.png':
+    img = PhotoImage(file='images/screensavers/windows_4.png')
+
+desktoplbl = Label(desktop, bg='dark blue', image=img)
+desktoplbl.pack(expand=YES, fill=BOTH)
+
+fd.close()
+
 desktop.geometry(ra)
 taskbar = Frame(desktop, bg="gray")
-taskbar.pack(side=BOTTOM, fill=X)
+taskbar.pack(fill=X, side=BOTTOM)
 startbtn = Button(taskbar, text='Start', bg="light gray", activebackground="light gray", bd=7, command=startclckd)
 startbtn.grid(column=0)
 desktop.mainloop()

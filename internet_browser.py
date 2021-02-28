@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtPrintSupport import *
+from tkinter import *
 
 import os
 import sys
@@ -173,7 +174,8 @@ class MainWindow(QMainWindow):
         self.urlbar.setCursorPosition(0)
 
 
-def start_browser():
+def start_browser(internetoolsmenu):
+    internetoolsmenu.destroy()
     app = QApplication(sys.argv)
     app.setApplicationName("WFourB")
     app.setOrganizationName("WFourB")

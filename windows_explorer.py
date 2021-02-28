@@ -1,4 +1,5 @@
 import sys
+from tkinter import *
 from PyQt5.QtWidgets import QApplication, QWidget, QTreeView, QFileSystemModel, QVBoxLayout
 from PyQt5.QtCore import QModelIndex
 
@@ -28,7 +29,8 @@ class FileSystemView(QWidget):
         self.setLayout(layout)
 
 
-def explorer_start():
+def explorer_start(programsmenu):
+    programsmenu.destroy()
     app = QApplication(sys.argv)
     dir_path = r"/home"
     demo = FileSystemView(dir_path)

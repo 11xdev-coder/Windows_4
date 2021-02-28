@@ -23,7 +23,8 @@ def startScan(progressbar, closebtn, startbtn, root):
     startbtn['state'] = NORMAL
 
 
-def start_scanDisk():
+def start_scanDisk(systemtoolsmenu):
+    systemtoolsmenu.destroy()
     root = Toplevel()
     root.resizable(False, False)
     root.title("ScanDisk")

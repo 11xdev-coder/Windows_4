@@ -1,9 +1,11 @@
 import pygame
 from random import randrange
+from tkinter import *
 import sys
 
 
-def start_snek():
+def start_snek(gamesmenu):
+    gamesmenu.destroy()
     RES = 800
     SIZE = 50
 

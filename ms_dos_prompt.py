@@ -72,7 +72,8 @@ def paste_text(field):
     field.insert(END, field.clipboard_get())
 
 
-def startms_dos():
+def startms_dos(programsmenu):
+    programsmenu.destroy()
     root = Toplevel()
     copyimg = PhotoImage(file='images/ms_dos_copyimg.PNG')
     pasteimg = PhotoImage(file='images/ms_dos_pasteimg.PNG')

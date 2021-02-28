@@ -11,7 +11,8 @@ brush_size = 3
 color = 'black'
 
 
-def start_mspaint():
+def start_mspaint(accessoriesmenu):
+    accessoriesmenu.destroy()
 
     def selectrubber():
         global mode

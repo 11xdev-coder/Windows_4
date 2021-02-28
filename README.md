@@ -36,9 +36,9 @@ My tasks:
   - [ ] Add find menu
   - [ ] Add settings menu
     - [ ] Add Control Panel
-      - [ ] Add Hardwares
-      - [ ] Add Programs
-      - [ ] Add Date/Time
+      - [x] Add Hardwares
+      - [x] Add Programs
+      - [x] Add Date/Time
       - [ ] Add Display
   - [ ] Add help
   - [ ] Add run
@@ -49,8 +49,12 @@ How to run it:
   1. Download this project.
   2. Install python 3.8.
   3. Open command line and enter the project you downloaded using ```cd```.
-  4. Enter ```python main.py``` for Windows and ```python3 main.py``` for Linux.
+  4. Enter ```py main.py``` for Windows and ```python main.py``` for Linux.
   5. Run `python -m pip install -r requirements`, to install `alsaaudio` type: `sudo apt-get install -y python3-alsaaudio`
   6. Enjoy!
+
+This program tested on:
+ - Linux
+ - Windows 10
 
   
