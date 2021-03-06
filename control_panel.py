@@ -2,7 +2,8 @@ from tkinter import *
 from tkinter.ttk import *
 from tkinter import messagebox
 from tkinter import filedialog
-import sys, os, subprocess, time
+from tkinter import font
+import sys, os, subprocess, time, random
 from PIL import Image
 
 
@@ -206,7 +207,7 @@ def dateTime():
     if time_and_date[1] == 'Jan' or time_and_date[1] == 'Mar' or time_and_date[1] == 'Apr' \
             or time_and_date[1] == 'May' or time_and_date[1] == 'Jul' or time_and_date[1] == 'Aug' \
             or time_and_date[1] == 'Oct' or time_and_date[1] == 'Dec':
-        for dnf in range(0, 8):
+        for dnf in range(1, 9):
             Button(days, text=dnf).grid(row=0, column=dnf)
 
         for dnf in range(7, 15):
@@ -303,6 +304,30 @@ def applysv(desktoplbl, screen_width, screen_height, screensavers):
 
         fd.close()
 
+    elif screensavers.get() == 'n00b':
+        # Opening image with Pillow
+        screensavernormal = Image.open("images/screensavers/n00b.png")
+        width = screen_width
+        height = screen_height
+        # Resizing image
+        screensaverresized = screensavernormal.resize((width, height - 125), Image.ANTIALIAS)
+        # Saving resized image
+        screensaverresized.save("images/screensavers/n00b.png")
+        # Opening image with tkinter
+        fd = open('system/desktopbg.txt', 'w')
+        fd.write('images/screensavers/n00b.png')
+
+        img = PhotoImage(file='images/screensavers/n00b.png')
+
+        desktoplbl.configure(image=img)
+        desktoplbl.image = img
+
+        fd.close()
+
+    else:
+        desktoplbl.configure(image=None)
+        desktoplbl.image = None
+
 
 def exitandapplysv(desktoplbl, desktop, root, screen_width, screen_height, screensavers):
     if screensavers.get() == 'Windows 4 NOT':
@@ -324,6 +349,34 @@ def exitandapplysv(desktoplbl, desktop, root, screen_width, screen_height, scree
         desktoplbl.image = img
 
         fd.close()
+
+    elif screensavers.get() == 'n00b':
+        # Opening image with Pillow
+        screensavernormal = Image.open("images/screensavers/n00b.png")
+        width = screen_width
+        height = screen_height
+        # Resizing image
+        screensaverresized = screensavernormal.resize((width, height - 125), Image.ANTIALIAS)
+        # Saving resized image
+        screensaverresized.save("images/screensavers/n00b.png")
+        # Opening image with tkinter
+        fd = open('system/desktopbg.txt', 'w')
+        fd.write('images/screensavers/n00b.png')
+
+        img = PhotoImage(file='images/screensavers/n00b.png')
+
+        desktoplbl.configure(image=img)
+        desktoplbl.image = img
+
+        fd.close()
+
+    else:
+        desktoplbl.configure(image=None)
+        desktoplbl.image = None
+        fd = open('system/desktopbg.txt', 'w')
+        fd.write('')
+        fd.close()
+
     root.destroy()
 
 
@@ -342,16 +395,16 @@ def display(desktop, desktoplbl):
     colour = Entry(bgframe)
     colour.grid(row=1, column=0)
 
-    Button(bgframe, text='OK', command=lambda: exitandapplybg(desktop, d, colour)).grid(row=2, column=0)
+    Button(bgframe, text='OK', command=lambda: exitandapplybg(desktoplbl, d, colour)).grid(row=2, column=0)
     Button(bgframe, text='Отменить', command=lambda: d.destroy()).grid(row=2, column=1)
-    Button(bgframe, text='Применить', command=lambda: applybg(desktop, colour)).grid(row=2, column=2)
+    Button(bgframe, text='Применить', command=lambda: applybg(desktoplbl, colour)).grid(row=2, column=2)
 
     svframe = Frame(nb)
 
     svlblframe = Label(svframe, text='Заставка')
 
     screensaversvalue = StringVar()
-    svs = Combobox(svlblframe, values=('Windows 4 NOT', 'n00b'), textvariable=screensaversvalue)
+    svs = Combobox(svlblframe, values=('None', 'Windows 4 NOT', 'n00b'), textvariable=screensaversvalue)
     svs.current(0)
     svs.grid(row=0, column=0)
 
@@ -360,7 +413,7 @@ def display(desktop, desktoplbl):
     Button(svframe, text='OK', command=lambda: exitandapplysv(desktoplbl, desktop, d, screen_width, screen_height, svs)) \
         .grid(row=1, column=0)
     Button(svframe, text='Отменить', command=lambda: d.destroy()).grid(row=1, column=1)
-    Button(svframe, text='Применить', command=lambda: applysv(desktop, screen_width, screen_height, svs)) \
+    Button(svframe, text='Применить', command=lambda: applysv(desktoplbl, screen_width, screen_height, svs)) \
         .grid(row=1, column=2)
 
     nb.add(bgframe, text='Фон')
@@ -370,14 +423,56 @@ def display(desktop, desktoplbl):
     d.mainloop()
 
 
+def fonts():
+    f = Toplevel()
+    f.title('Шрифты')
+
+    canvas = Canvas(f)
+    scrollbar = Scrollbar(f, orient="vertical", command=canvas.yview)
+    fontsframe = Frame(canvas)
+
+    fontsframe.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+    canvas.create_window((0, 0), window=fontsframe, anchor="nw")
+
+    canvas.configure(yscrollcommand=scrollbar.set)
+
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")
+
+    fonts = list(font.families())
+    fontsindex = -1
+    fontsTimg = PhotoImage(file='images/control_panel_icons/fontT.png')
+    fontsAimg = PhotoImage(file='images/control_panel_icons/fontA.png')
+
+    for i in range(0, len(fonts) - 1, 2):
+        for r in range(0, 11):
+            fontsindex += 1
+
+            number = random.randint(0, 1)
+
+            if number == 0:
+                imageneeded = fontsTimg
+            else:
+                imageneeded = fontsAimg
+
+            Label(fontsframe, image=imageneeded).grid(row=i, column=r)
+            Label(fontsframe, text=fonts[fontsindex]).grid(row=i + 1, column=r)
+
+    f.mainloop()
+
+
 def start_control(desktop, desktoplbl, setMenu):
-    setMenu.destroy()
+    # setMenu.destroy()
     root = Toplevel()
     root.title('Панель управления')
+
     hardwareimg = PhotoImage(file='images/control_panel_icons/add_hardware.png')
     programsimg = PhotoImage(file='images/control_panel_icons/add_programs.png')
     dateTimeImg = PhotoImage(file='images/control_panel_icons/date_time.png')
     displayImg = PhotoImage(file='images/control_panel_icons/display.png')
+    fontsImg = PhotoImage(file='images/control_panel_icons/fonts.png')
+
     Button(root, image=hardwareimg, command=lambda: add_new_hardware()).grid(row=0, column=0)
     Label(root, text='Добавить новое \nоборудование').grid(row=1, column=0)
     Button(root, image=programsimg, command=lambda: add_programs()).grid(row=0, column=1)
@@ -386,4 +481,11 @@ def start_control(desktop, desktoplbl, setMenu):
     Label(root, text='Дата/Время').grid(row=1, column=2)
     Button(root, image=displayImg, command=lambda: display(desktop, desktoplbl)).grid(row=0, column=3)
     Label(root, text='Дисплэй').grid(row=1, column=3)
+    Button(root, image=fontsImg, command=lambda: fonts()).grid(row=0, column=4)
+    Label(root, text='Шрифты').grid(row=1, column=4)
     root.mainloop()
+
+
+tk = Tk()
+start_control(1, 1, 3)
+tk.mainloop()

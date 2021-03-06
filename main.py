@@ -291,10 +291,8 @@ if showWelcomeScreen:
 desktop.title('Windows 4 or 95?')
 desktop['bg'] = 'dark blue'
 
-img = PhotoImage()
 fd = open('system/desktopbg.txt', 'r')
-if fd.read() == 'images/screensavers/windows_4.png':
-    img = PhotoImage(file='images/screensavers/windows_4.png')
+img = PhotoImage(file=fd.read())
 
 desktoplbl = Label(desktop, bg='dark blue', image=img)
 desktoplbl.pack(expand=YES, fill=BOTH)
