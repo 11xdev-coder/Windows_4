@@ -463,7 +463,7 @@ def fonts():
 
 
 def start_control(desktop, desktoplbl, setMenu):
-    # setMenu.destroy()
+    setMenu.destroy()
     root = Toplevel()
     root.title('Панель управления')
 
@@ -485,7 +485,3 @@ def start_control(desktop, desktoplbl, setMenu):
     Label(root, text='Шрифты').grid(row=1, column=4)
     root.mainloop()
 
-
-tk = Tk()
-start_control(1, 1, 3)
-tk.mainloop()
